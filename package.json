@@ -1,0 +1,36 @@
+{
+  "name": "gbot",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GOKULNAIR94/gbot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GOKULNAIR94/gbot/issues"
+  },
+  "homepage": "https://github.com/GOKULNAIR94/gbot#readme",
+  "dependencies": {
+    "angular": "^1.6.6",
+    "body-parser": "^1.18.0",
+    "date-and-time": "^0.6.2",
+    "express": "^4.15.3",
+    "fast-csv": "^2.4.0",
+    "google": "^2.1.0",
+    "google-news": "^1.4.6",
+    "json-query": "^2.2.2",
+    "mssql": "^4.1.0",
+    "open": "0.0.5",
+    "opn": "^5.1.0",
+    "request": "^2.76.0",
+    "weather-js": "^2.0.0"
+  },
+  "devDependencies": {},
+  "description": ""
+}
