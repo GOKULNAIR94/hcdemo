@@ -6,7 +6,6 @@ module.exports = function(req, res) {
     var http = require('https');
     var fs = require('fs');
     var date = require('date-and-time');
-    var QueryDB = require("./queryDB");
 
 
     var intentName = req.body.result.metadata.intentName;
