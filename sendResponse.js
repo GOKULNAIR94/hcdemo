@@ -15,7 +15,7 @@ module.exports = function ( speech, text, suggests, contextOut, req, res, callba
                             'items': [{
                                 'simpleResponse': {
                                     'textToSpeech': speech,
-                                    'displayText': speech
+                                    'displayText': text
                                 }
                             }],
                             "suggestions": suggests
