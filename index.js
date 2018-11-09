@@ -12,8 +12,8 @@ module.exports = function(req, res) {
 
     var speech = "";
     var speechText = "";
-    
     var suggests = [];
+    var contextOut = [];
     
     var intentName = req.body.result.metadata.intentName;
     console.log("intentName : " + intentName);
