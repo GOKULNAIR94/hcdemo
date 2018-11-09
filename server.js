@@ -12,7 +12,6 @@ restService.use(bodyParser.urlencoded({
 restService.use(bodyParser.json());
 
 var Index = require("./index");
-var Google = require("./google");
 
 var speech = "";
 

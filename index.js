@@ -6,6 +6,8 @@ module.exports = function(req, res) {
     var http = require('https');
     var fs = require('fs');
     var date = require('date-and-time');
+    
+    var SendResponse = require("./sendResponse");
 
 
     var speech = "";
