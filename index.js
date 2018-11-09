@@ -60,7 +60,7 @@ module.exports = function(req, res) {
 
             case (intentName == "Activities - HR"):
                 {
-                    speechText = "Its You have the following pending activities: \n3 Leave requests. \n2 Timesheet requests.\nWhat requests would you like to see?";
+                    speechText = "You have the following pending activities: \n3 Leave requests. \n2 Timesheet requests.\nWhat requests would you like to see?";
                     speech = speechText;
                     SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
@@ -70,7 +70,16 @@ module.exports = function(req, res) {
                 
             case (intentName == "Activities - Sales"):
                 {
-                    speechText = "Its You have the following pending activities: \n1. Meeting with James Lee of American Bank. \n2. Call with Phill Rogers about Oracle Open World";
+                    speechText = "You have the following pending activities: \n1. Meeting with James Lee of American Bank. \n2. Call with Phill Rogers about Oracle Open World.";
+                    speech = speechText;
+                    SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+                            console.log("Finished!");
+                        });
+                    break;
+                }
+                case (intentName == "Activities - Service"):
+                {
+                    speechText = "You have the following pending activities: \n1. Kathy Watkins of American Bank - Unable to run smart view.";
                     speech = speechText;
                     SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
