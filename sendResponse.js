@@ -1,10 +1,10 @@
-module.exports = function ( speech, suggests, contextOut, req, res, callback){ 
+module.exports = function ( speech, text, suggests, contextOut, req, res, callback){ 
 
     switch(req.body.originalRequest.source) {
         case "google":{
             res.json({
                 speech: speech,
-                displayText: speech,
+                displayText: text,
                 contextOut : contextOut,
                 data: {
                     google: {
@@ -29,7 +29,7 @@ module.exports = function ( speech, suggests, contextOut, req, res, callback){
         case "facebook":{
             res.json({
                 speech: speech,
-                displayText: speech
+                displayText: text
             });
             break;
         }
@@ -37,7 +37,7 @@ module.exports = function ( speech, suggests, contextOut, req, res, callback){
         default:{
             res.json({
                 speech: speech,
-                displayText: speech
+                displayText: text
             });
         }
     }

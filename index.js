@@ -8,10 +8,15 @@ module.exports = function(req, res) {
     var date = require('date-and-time');
 
 
+    var speech = "";
+    var speechText = "";
+    
+    var suggests = [];
+    
     var intentName = req.body.result.metadata.intentName;
     console.log("intentName : " + intentName);
     try {
-        var speech = "";
+        
         switch (true) {
             case (intentName == "Default Welcome Intent"):
                 {
@@ -27,7 +32,7 @@ module.exports = function(req, res) {
                 {
                     var time = date.format(new Date(), 'hh:mm A');
                     var date = date.format(new Date(), 'dddd MMMM DD YYYY');
-                    var speechText = "Its " + time + ", " + date + ". \n";
+                    speechText = "Its " + time + ", " + date + ". \n";
                     speech = speechText;
                     var weather = require('weather-js');
 
@@ -43,9 +48,9 @@ module.exports = function(req, res) {
                         }
                         speechText = speechText + "You have couple of HR and Sales activities for the day. What activities would you like to see. HR or Sales?";
                         speech = speech + "You have couple of HR and Sales activities for the day. What activities would you like to see. HR or Sales?";
-                        return res.json({
-                            speech: speech,
-                            displayText: speechText
+                        suggests = [{"title": "HR"},{"title": "Sales"},{"title": "Service"}]
+                        SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+                            console.log("Finished!");
                         });
                     });
                     break;
