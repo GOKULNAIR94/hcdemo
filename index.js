@@ -48,8 +48,8 @@ module.exports = function(req, res) {
                             console.log(JSON.stringify(result, null, 2));
                             speechText = speechText + "Currently in Chennai, it's " + result[0].current.temperature + "°C and sky is " + result[0].forecast[1].skytextday + ". \n";
                         }
-                        speechText = speechText + "You have couple of HR and Sales activities for the day. What activities would you like to see. HR or Sales?";
-                        speech = speech + "You have couple of HR and Sales activities for the day. What activities would you like to see. HR or Sales?";
+                        speechText = speechText + "You have couple of HR, Sales and Service activities for the day. What activities would you like to see. HR, Sales or Service?";
+                        speech = speech + "You have couple of HR, Sales and Service activities for the day. What activities would you like to see. HR, Sales or Service?";
                         suggests = [{"title": "HR"},{"title": "Sales"},{"title": "Service"}]
                         SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
