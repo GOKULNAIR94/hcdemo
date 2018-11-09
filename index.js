@@ -39,14 +39,14 @@ module.exports = function(req, res) {
                     var weather = require('weather-js');
 
                     weather.find({
-                        search: '94568',
+                        search: '600119',
                         degreeType: 'C'
                     }, function(err, result) {
                         if (err) {
                             console.log(err);
                         } else {
                             console.log(JSON.stringify(result, null, 2));
-                            speechText = speechText + "Currently in San Jose, it's " + result[0].current.temperature + "°C and sky is " + result[0].forecast[1].skytextday + ". \n";
+                            speechText = speechText + "Currently in Chennai, it's " + result[0].current.temperature + "°C and sky is " + result[0].forecast[1].skytextday + ". \n";
                         }
                         speechText = speechText + "You have couple of HR and Sales activities for the day. What activities would you like to see. HR or Sales?";
                         speech = speech + "You have couple of HR and Sales activities for the day. What activities would you like to see. HR or Sales?";
