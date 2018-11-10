@@ -62,6 +62,7 @@ module.exports = function(req, res) {
                 {
                     speechText = "You have the following pending activities: \n3 Leave requests. \n2 Timesheet requests.\nWhat requests would you like to see?";
                     speech = speechText;
+                    suggests = [{"title": "Leaves"},{"title": "Timesheet"}];
                     SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
                         });
@@ -70,8 +71,9 @@ module.exports = function(req, res) {
                 
             case (intentName == "Activities - Sales"):
                 {
-                    speechText = "You have the following pending activities: \n1. Meeting with James Lee of American Bank. \n2. Call with Phill Rogers about Oracle Open World.";
-                    speech = speechText;
+                    speechText = "You have the following pending activities: \n1. Activity 12067 - Meeting with James Lee of American Bank. \n2. Activity 11245 Call with Phill Rogers about Oracle Open World.";
+                    speech = "You have the following pending activities: \n. Activity 12067. Meeting with James Lee of American Bank. \n. Activity 11245 Call with Phill Rogers about Oracle Open World.";
+                    suggests = [{"title": "12067"},{"title": "11245"}];
                     SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
                         });
@@ -79,8 +81,9 @@ module.exports = function(req, res) {
                 }
                 case (intentName == "Activities - Service"):
                 {
-                    speechText = "You have the following pending activities: \n1. Kathy Watkins of American Bank - Unable to run smart view.";
-                    speech = speechText;
+                    speechText = "You have the following open service requests: \n1. INC0003535 - Kathy Watkins of American Bank - Unable to run smart view.";
+                    speech = "You have the following open service requests: \n. Ticket INC0003535 Kathy Watkins of American Bank - Unable to run smart view.";
+                    suggests = [{"title": "INC0003535"}];
                     SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
                         });
