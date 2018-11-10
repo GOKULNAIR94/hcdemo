@@ -20,11 +20,11 @@ module.exports = function(req, res) {
 
     var actSales = {
         "12067" : {
-            "Subject" : "Meeting with James Lee of American Bank",
+            "Subject" : "Meeting with Kathy Watkins of American Bank",
             "Date" : "12/11/2018",
             "Time" : "11:00 am IST",
             "Account" : "American Bank",
-            "Contact" : "James Lee",
+            "Contact" : "Kathy Watkins",
             "SR" : {
                 "id" : "INC0003535",
                 "Subject" : "Unable to run smart view",
