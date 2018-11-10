@@ -17,8 +17,23 @@ module.exports = function(req, res) {
     
     var intentName = req.body.result.metadata.intentName;
     console.log("intentName : " + intentName);
+
+    var actSales = {
+        "12067" : {
+            "Subject" : "Meeting with James Lee of American Bank",
+            "Date" : "12/11/2018",
+            "Time" : "11:00 am IST",
+            "Account" : "American Bank"
+        },
+        "11245" :  {
+            "Subject" : "Call with Phill Rogers of Tata Motors about Oracle Open World",
+            "Date" : "12/11/2018",
+            "Time" : "04:00 pm IST",
+            "Account" : "Tata Motors"
+        }
+    };
+    
     try {
-        
         switch (true) {
             case (intentName == "Default Welcome Intent"):
                 {
@@ -71,18 +86,13 @@ module.exports = function(req, res) {
                 
             case (intentName == "Activities - Sales"):
                 {
-                    var actSales = {
-                        "12067" : "Meeting with James Lee of American Bank",
-                        "11245" : "Call with Phill Rogers about Oracle Open World"
-                    };
+                    
                     speechText = "You have the following pending activities: \n";
                     for( var actNum in actSales ){
-                        speechText = speechText + "Activity " + actNum + " - " + actSales[actNum] + ".\n";
+                        speechText = speechText + "Activity " + actNum + " - " + actSales[actNum].Subject + ".\n";
                         suggests.push({"title": actNum})
                     }
                     speech = speechText;
-//                    speechText = "You have the following pending activities: \n1. Activity 12067 - Meeting with James Lee of American Bank. \n2. Activity 11245 Call with Phill Rogers about Oracle Open World.";
-//                    speech = "You have the following pending activities: \n. Activity 12067. . \n. Activity 11245 .";
                     
                     SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
@@ -93,9 +103,9 @@ module.exports = function(req, res) {
             case (intentName == "Activities - Sales - custom"):
                 {
                     var activityNumber = req.body.result.parameters.activityNumber;
-                    speechText = "You have the following pending activities: \n1. Activity 12067 - Meeting with James Lee of American Bank. \n2. Activity 11245 Call with Phill Rogers about Oracle Open World.";
-                    speech = "You have the following pending activities: \n. Activity 12067. Meeting with James Lee of American Bank. \n. Activity 11245 Call with Phill Rogers about Oracle Open World.";
-                    suggests = [{"title": "12067"},{"title": "11245"}];
+                    
+                    speechText = "Activity - " + activityNumber + ",\n" + "Subject - " + actSales[activityNumber].Subject + ",\n" + "Date - " + actSales[activityNumber].Date + ",\n" +"Time - " + actSales[activityNumber].Time + ",\n";
+                    speech = speechText;
                     SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
                         });
