@@ -101,7 +101,7 @@ module.exports = function(req, res) {
                     
                     speechText = "You have the following pending activities: \n";
                     for( var actNum in actSales ){
-                        speechText = speechText + "Activity " + actNum + " - " + actSales[actNum].Subject + ".\n";
+                        speechText = speechText + "Activity " + actNum + " - " + actSales[actNum].Subject + ".\nPlease select the acitivity number for moew details.";
                         suggests.push({"title": actNum})
                     }
                     speech = speechText;
@@ -139,7 +139,7 @@ module.exports = function(req, res) {
             case (intentName == "Activities - Sales - custom - custom-SR"):
                 {
                     var activityNumber = req.body.result.parameters.activityNumber;
-                    speechText = actSales[activityNumber].Contact + " has raised following service requests" + ":\n" + "Ticket Number - " + actSales[activityNumber].SR.id + ",\n" + "Subject - " + actSales[activityNumber].SR.Subject + ",\n" + "Severity - " + actSales[activityNumber].SR.Severity + ".\n";
+                    speechText = actSales[activityNumber].Contact + " has raised following service requests" + ":\n" + "Ticket Number - " + actSales[activityNumber].SR.id + ",\n" + "Subject - " + actSales[activityNumber].SR.Subject + ",\n" + "Severity - " + actSales[activityNumber].SR.Severity + ".\nPlease let me know when the issue is resolved and I can close this SR for you.";
                     speech = speechText;
                     SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
