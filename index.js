@@ -23,13 +23,23 @@ module.exports = function(req, res) {
             "Subject" : "Meeting with James Lee of American Bank",
             "Date" : "12/11/2018",
             "Time" : "11:00 am IST",
-            "Account" : "American Bank"
+            "Account" : "American Bank",
+            "SR" : {
+                "id" : "INC0003535",
+                "Subject" : "Unable to run smart view",
+                "Severity" : "High"
+            }
         },
         "11245" :  {
             "Subject" : "Call with Phill Rogers of Tata Motors about Oracle Open World",
             "Date" : "12/11/2018",
             "Time" : "04:00 pm IST",
-            "Account" : "Tata Motors"
+            "Account" : "Tata Motors",
+            "SR" : {
+                "id" : "INC0002432",
+                "Subject" : "Unable to run smart view",
+                "Severity" : "High"
+            }
         }
     };
     
@@ -104,8 +114,8 @@ module.exports = function(req, res) {
                 {
                     var activityNumber = req.body.result.parameters.activityNumber;
                     
-                    speechText = "Activity - " + activityNumber + ",\n" + "Subject - " + actSales[activityNumber].Subject + ",\n" + "Date - " + actSales[activityNumber].Date + ",\n" + "Time - " + actSales[activityNumber].Time + ",\n" + "Account - " + actSales[activityNumber].Account + ",\n";
-                    speechText += ".\nWould you like to know the churn index or news about " + actSales[activityNumber].Account + ", get the service requests from this user or should I close this activity?";
+                    speechText = "Activity - " + activityNumber + ",\n" + "Subject - " + actSales[activityNumber].Subject + ",\n" + "Date - " + actSales[activityNumber].Date + ",\n" + "Time - " + actSales[activityNumber].Time + ",\n" + "Account - " + actSales[activityNumber].Account + ".\n";
+                    speechText += "\nWould you like to know the churn index or news about " + actSales[activityNumber].Account + ", get the service requests from this user or should I close this activity?";
                     speech = speechText;
                     suggests = [
                         {
@@ -123,6 +133,28 @@ module.exports = function(req, res) {
                         });
                     break;
                 }
+                
+            case (intentName == "Activities - Sales - custom - custom-SR"):
+                {
+                    var activityNumber = req.body.result.parameters.activityNumber;
+                    
+                    speechText = "Account - " + actSales[activityNumber].Account + ",\n" "Ticket - " + actSales[activityNumber].SR.id + ",\n" "Subject - " + actSales[activityNumber].SR.Subject + ",\n" "Severity - " + actSales[activityNumber].SR.Severity + ".\n";
+                    speech = speechText;
+                    SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+                            console.log("Finished!");
+                        });
+                    break;
+                }
+            
+            case (intentName == "Activities - Sales - custom - news"):
+                {
+                    SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+                            console.log("Finished!");
+                        });
+                    break;
+                }
+                
+
 
                 case (intentName == "Activities - Service"):
                 {
