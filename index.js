@@ -100,12 +100,14 @@ module.exports = function(req, res) {
                 {
                     
                     speechText = "You have the following pending activities: \n";
+                    speech =  "You have the following pending activities: \n";
                     for( var actNum in actSales ){
-                        speechText = speechText + "Activity " + actNum + " - " + actSales[actNum].Subject + ".\n";
+                        speechText += "Activity " + actNum + " - " + actSales[actNum].Subject + ".\n";
+                        speech += "Activity number" + actNum + ". " + actSales[actNum].Subject + ".\n";
                         suggests.push({"title": actNum})
                     }
                     speechText += "Please select the activity number for moew details.";
-                    speech = speechText;
+                    speech += "Please select the activity number for moew details.";
                     
                     SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
