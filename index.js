@@ -137,7 +137,7 @@ module.exports = function(req, res) {
             case (intentName == "Activities - Sales - custom - custom-SR"):
                 {
                     var activityNumber = req.body.result.parameters.activityNumber;
-                    speechText = "Account - " + actSales[activityNumber].Account + ",\n" "Ticket - " + actSales[activityNumber].SR.id + ",\n" "Subject - " + actSales[activityNumber].SR.Subject + ",\n" "Severity - " + actSales[activityNumber].SR.Severity + ".\n";
+                    speechText = "Account - " + actSales[activityNumber].Account + ",\n" + "Ticket - " + actSales[activityNumber].SR.id + ",\n" + "Subject - " + actSales[activityNumber].SR.Subject + ",\n" + "Severity - " + actSales[activityNumber].SR.Severity + ".\n";
                     speech = speechText;
                     SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
