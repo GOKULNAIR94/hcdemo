@@ -104,8 +104,20 @@ module.exports = function(req, res) {
                 {
                     var activityNumber = req.body.result.parameters.activityNumber;
                     
-                    speechText = "Activity - " + activityNumber + ",\n" + "Subject - " + actSales[activityNumber].Subject + ",\n" + "Date - " + actSales[activityNumber].Date + ",\n" +"Time - " + actSales[activityNumber].Time + ",\n";
+                    speechText = "Activity - " + activityNumber + ",\n" + "Subject - " + actSales[activityNumber].Subject + ",\n" + "Date - " + actSales[activityNumber].Date + ",\n" + "Time - " + actSales[activityNumber].Time + ",\n" + "Account - " + actSales[activityNumber].Account + ",\n";
+                    speechText += ".\nWould you like to know the churn index or news about " + actSales[activityNumber].Account + ", get the service requests from this user or should I close this activity?";
                     speech = speechText;
+                    suggests = [
+                        {
+                            "title" : "The churn index"
+                        },
+                        {
+                            "title" : "What's in the news"
+                        },
+                        {
+                            "title" : "Service requests"
+                        }
+                    ];
                     SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
                         });
