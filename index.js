@@ -24,6 +24,7 @@ module.exports = function(req, res) {
             "Date" : "12/11/2018",
             "Time" : "11:00 am IST",
             "Account" : "American Bank",
+            "Contact" : "James Lee",
             "SR" : {
                 "id" : "INC0003535",
                 "Subject" : "Unable to run smart view",
@@ -35,6 +36,7 @@ module.exports = function(req, res) {
             "Date" : "12/11/2018",
             "Time" : "04:00 pm IST",
             "Account" : "Tata Motors",
+            "Contact" : "Phill Rogers",
             "SR" : {
                 "id" : "INC0002432",
                 "Subject" : "Unable to run smart view",
@@ -114,8 +116,8 @@ module.exports = function(req, res) {
                 {
                     var activityNumber = req.body.result.parameters.activityNumber;
                     
-                    speechText = "Activity - " + activityNumber + ",\n" + "Subject - " + actSales[activityNumber].Subject + ",\n" + "Date - " + actSales[activityNumber].Date + ",\n" + "Time - " + actSales[activityNumber].Time + ",\n" + "Account - " + actSales[activityNumber].Account + ".\n";
-                    speechText += "\nWould you like to know the churn index or news about " + actSales[activityNumber].Account + ", get the service requests from this user or should I close this activity?";
+                    speechText = "Following are details for the activity " + activityNumber + ",\n" + "Subject - " + actSales[activityNumber].Subject + ",\n" + "Date - " + actSales[activityNumber].Date + ",\n" + "Time - " + actSales[activityNumber].Time + ",\n" + "Account - " + actSales[activityNumber].Account + ".\n";
+                    speechText += "\nWould you like to know the churn index or news about " + actSales[activityNumber].Account + ", get the service requests from " + actSales[activityNumber].Contact + " or should I close this activity?";
                     speech = speechText;
                     suggests = [
                         {
@@ -137,7 +139,7 @@ module.exports = function(req, res) {
             case (intentName == "Activities - Sales - custom - custom-SR"):
                 {
                     var activityNumber = req.body.result.parameters.activityNumber;
-                    speechText = "Account - " + actSales[activityNumber].Account + ",\n" + "Ticket - " + actSales[activityNumber].SR.id + ",\n" + "Subject - " + actSales[activityNumber].SR.Subject + ",\n" + "Severity - " + actSales[activityNumber].SR.Severity + ".\n";
+                    speechText = actSales[activityNumber].Contact + " has raised following service requests" + ":\n" + "Ticket Number - " + actSales[activityNumber].SR.id + ",\n" + "Subject - " + actSales[activityNumber].SR.Subject + ",\n" + "Severity - " + actSales[activityNumber].SR.Severity + ".\n";
                     speech = speechText;
                     SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
