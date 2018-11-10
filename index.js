@@ -124,13 +124,13 @@ module.exports = function(req, res) {
                     speech = speechText;
                     suggests = [
                         {
-                            "title" : "The churn index"
-                        },
-                        {
                             "title" : "What's in the news"
                         },
                         {
                             "title" : "Service requests"
+                        },
+                        {
+                            "title" : "The churn index"
                         }
                     ];
                     SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
