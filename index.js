@@ -106,8 +106,8 @@ module.exports = function(req, res) {
                         speech += "Activity number" + actNum + ". " + actSales[actNum].Subject + ".\n";
                         suggests.push({"title": actNum})
                     }
-                    speechText += "Please select the activity number for moew details.";
-                    speech += "Please select the activity number for moew details.";
+                    speechText += "Please select the activity number for more details.";
+                    speech += "Please select the activity number for more details.";
                     
                     SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
