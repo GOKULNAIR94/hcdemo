@@ -205,7 +205,7 @@ module.exports = function(req, res) {
                             }
                         }
                         speech = speechText;
-                        SendResponse(, speechText, suggests, contextOut, req, res, function() {
+                        SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
                         });
                         break;
