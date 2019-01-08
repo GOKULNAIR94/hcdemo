@@ -11,6 +11,8 @@ restService.use(bodyParser.urlencoded({
 }));
 restService.use(bodyParser.json());
 
+req.body.headers = req.headers;
+
 var Index = require("./index");
 
 var speech = "";
