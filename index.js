@@ -218,6 +218,40 @@ module.exports = function(req, res) {
                         });
                     }
                 }
+                
+                
+                case (intentName == "JDE_exposure" || intentName == "JDE_exposure_name"):
+                {
+                    try {
+                        var CustNum = req.body.result.parameters.CustNum;
+                        var CustName = req.body.result.parameters.CustName;
+                        console.log("Cust Num = " + CustNum + "\nCust Name =" + CustName);
+                        if ((CustNum == "" || CustNum == null) && (CustName == "" || CustName == null)) {
+                            speechText = "Please provide the Customer name or number."
+                        } else {
+                            if (CustNum == "" || CustNum == null) {
+                                speechText = "Total Exposure for " + CustName + " is $5423152.";
+                            } else if (CustName == "" || CustName == null) {
+                                speechText = "Total Exposure for customer " + CustNum + "  is $5423152";
+                            } else {
+                                speechText = "Error";
+                            }
+                        }
+                        speech = speechText;
+                        SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+                            console.log("Finished!");
+                        });
+                        break;
+
+                    } catch (e) {
+                        speechText = "Error";
+                        speech = speechText;
+                        console.log("Error: " + e);
+                        SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+                            console.log("Finished!");
+                        });
+                    }
+                }
 
         }
 
