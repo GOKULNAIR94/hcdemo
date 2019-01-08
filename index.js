@@ -213,7 +213,7 @@ module.exports = function(req, res) {
                                     speechText = "No records found.";
                                 }
                                 else{
-                                    speechText = "Credit limit for " + (CustName || CustNum) + " is " + result.recordset[0].credit;
+                                    speechText = "Credit limit for " + (CustName || ("Customer " + CustNum) + " is " + result.recordset[0].credit;
 //                                    if (CustNum == "" || CustNum == null) {
 //                                        speechText = "Credit limit for " + CustName + " is " + result.recordset[0].credit;
 //                                    }
