@@ -198,7 +198,7 @@ module.exports = function(req, res) {
                             speechText = "Please provide the Customer name or number."
                         } else {
                             if (CustNum == "" || CustNum == null) {
-                                qString = "Select * from jde WHERE CustName  = " + CustName;
+                                qString = "Select * from jde WHERE CustName  = '" + CustName + "'";
                                 //speechText = "Credit limit for " + CustName + " is $5423152. If you want to know the credit limit for any other customer just let me know the Customer name or Number.";
                             } else if (CustName == "" || CustName == null) {
                                 qString = "Select * from jde WHERE CustNum  = " + CustNum;
