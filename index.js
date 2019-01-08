@@ -196,9 +196,9 @@ module.exports = function(req, res) {
                             speechText = "Please provide the Customer name or number."
                         } else {
                             if (CustNum == "" || CustNum == null) {
-                                speechText = "Credit limit for " + CustName + " is $5423152.";
+                                speechText = "Credit limit for " + CustName + " is $5423152. If you want to know the credit limit for any other customer just let me know the Customer name or Number.";
                             } else if (CustName == "" || CustName == null) {
-                                speechText = "Credit limit for customer " + CustNum + "  is $5423152";
+                                speechText = "Credit limit for Customer " + CustNum + "  is $5423152. If you want to know the credit limit for any other customer just provide the Customer name or Number.";
                             } else {
                                 speechText = "Error";
                             }
@@ -230,9 +230,9 @@ module.exports = function(req, res) {
                             speechText = "Please provide the Customer name or number."
                         } else {
                             if (CustNum == "" || CustNum == null) {
-                                speechText = "Total Exposure for " + CustName + " is $5423152.";
+                                speechText = "Total Exposure for " + CustName + " is $5423152. If you want to know the Total Exposure for any other customer just give me the Customer name or Number.";
                             } else if (CustName == "" || CustName == null) {
-                                speechText = "Total Exposure for customer " + CustNum + "  is $5423152";
+                                speechText = "Total Exposure for Customer " + CustNum + "  is $5423152. If you want to know the Total Exposure for any other customer just say the Customer name or Number.";
                             } else {
                                 speechText = "Error";
                             }
