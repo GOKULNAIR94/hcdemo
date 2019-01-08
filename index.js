@@ -172,6 +172,25 @@ module.exports = function(req, res) {
                         });
                     break;
                 }
+                
+                case (intentName == "JDE_creditlimit"):
+                {
+                    var CustNum = req.body.result.parameters.CustNum;
+                    var CustName = req.body.result.parameters.CustName;
+                    if( (CustNum == "" || CustNum == null) && (CustName == "" || CustName == null) ){
+                        speechText = "Please provide the Customer name or number."
+                        speech = speechText;
+                    }
+                    else{
+                        if(CustNum != "" || CustNum != null){
+                            speechText = "Credit limit for customer " + CustNum + " is $5423152.";
+                        }
+                        else if(CustName != "" || CustName != null){
+                            speechText = "Credit limit for " + CustName + "  is $5423152";
+                        }
+                    }
+                    break;
+                }
 
         }
 
