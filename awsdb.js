@@ -1,6 +1,6 @@
 module.exports = function ( qString, req, resp, callback){
 
-    console.log("Header :" + JSON.stringify(req.body.headers));
+    console.log("Header :" + JSON.stringify(req.body));
     var sql = require("mssql");
     var sqlConfig = {
         user: req.body.headers.sqluser,
