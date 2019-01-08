@@ -175,7 +175,8 @@ module.exports = function(req, res) {
                 
                 case (intentName == "JDE_creditlimit"):
                 {
-                    var CustNum = req.body.result.parameters.CustNum;
+                    try{
+                                            var CustNum = req.body.result.parameters.CustNum;
                     var CustName = req.body.result.parameters.CustName;
                     if( (CustNum == "" || CustNum == null) && (CustName == "" || CustName == null) ){
                         speechText = "Please provide the Customer name or number."
@@ -188,11 +189,22 @@ module.exports = function(req, res) {
                         else if(CustName != "" || CustName != null){
                             speechText = "Credit limit for " + CustName + "  is $5423152";
                         }
+                        else{
+                            speechText = "Error";
+                        }
                     }
                     SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
                         console.log("Finished!");
                     });
                     break;
+
+                    }
+                    catch(e){
+                        speechText = "Error";
+                        console.log("Error: " + e);
+                    SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+                        console.log("Finished!");
+                    });}
                 }
 
         }
