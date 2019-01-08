@@ -197,20 +197,22 @@ module.exports = function(req, res) {
                             speech = speechText;
                         } else {
                             if (CustNum == "" || CustNum == null) {
-                                speechText = "Credit limit for customer " + CustName + " is $5423152.";
+                                speechText = "Credit limit for " + CustName + " is $5423152.";
                             } else if (CustName == "" || CustName == null) {
-                                speechText = "Credit limit for " + CustNum + "  is $5423152";
+                                speechText = "Credit limit for customer " + CustNum + "  is $5423152";
                             } else {
                                 speechText = "Error";
                             }
                         }
-                        SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+                        speech = speechText;
+                        SendResponse(, speechText, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
                         });
                         break;
 
                     } catch (e) {
                         speechText = "Error";
+                        speech = speechText;
                         console.log("Error: " + e);
                         SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
                             console.log("Finished!");
