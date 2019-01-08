@@ -211,7 +211,7 @@ module.exports = function(req, res) {
                                     speechText = "No records found.";
                                 }
                                 else{
-                                    speechText = "Credit limit for " + CustName + "(" + CustNum  + ") is " + result.recordset[0].credit;
+                                    speechText = "Credit limit for " + result.recordset[0].CustName + "(" + result.recordset[0].CustNum  + ") is " + result.recordset[0].credit;
                                 }
                                 speech = speechText;
                                 SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
@@ -261,7 +261,7 @@ module.exports = function(req, res) {
                                     speechText = "No records found.";
                                 }
                                 else{
-                                    speechText = "Total Exposure for " + CustName + "(" + CustNum  + ") is " + result.recordset[0].exposure;
+                                    speechText = "Total Exposure for " + result.recordset[0].CustName + "(" + result.recordset[0].CustNum  + ") is " + result.recordset[0].exposure;
                                 }
                                 speech = speechText;
                                 SendResponse(speech, speechText, suggests, contextOut, req, res, function() {

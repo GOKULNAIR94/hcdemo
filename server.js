@@ -29,6 +29,13 @@ restService.post('/inputmsg', function(req, res) {
 
 });
 
+restService.get('/login', onRequest);
+restService.use(express.static(path.join(__dirname, '/public')));
+
+
+function onRequest(request, response){
+  response.sendFile(path.join(__dirname, '/public/index.html'));
+}
 
 restService.listen((process.env.PORT || 9000), function() {
     console.log("Server up and listening");
