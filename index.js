@@ -194,7 +194,6 @@ module.exports = function(req, res) {
                         console.log("Cust Num = " + CustNum + "\nCust Name =" + CustName);
                         if ((CustNum == "" || CustNum == null) && (CustName == "" || CustName == null)) {
                             speechText = "Please provide the Customer name or number."
-                            speech = speechText;
                         } else {
                             if (CustNum == "" || CustNum == null) {
                                 speechText = "Credit limit for " + CustName + " is $5423152.";
