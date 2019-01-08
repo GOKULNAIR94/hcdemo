@@ -199,10 +199,8 @@ module.exports = function(req, res) {
                         } else {
                             if (CustNum == "" || CustNum == null) {
                                 qString = "Select * from jde WHERE CustName  = '" + CustName + "'";
-                                //speechText = "Credit limit for " + CustName + " is $5423152. If you want to know the credit limit for any other customer just let me know the Customer name or Number.";
                             } else if (CustName == "" || CustName == null) {
                                 qString = "Select * from jde WHERE CustNum  = " + CustNum;
-                                //speechText = "Credit limit for Customer " + CustNum + "  is $5423152. If you want to know the credit limit for any other customer just provide the Customer name or Number.";
                             } else {
                                 speechText = "Error";
                             }
@@ -214,12 +212,6 @@ module.exports = function(req, res) {
                                 }
                                 else{
                                     speechText = "Credit limit for " + CustName + "(" + CustNum  + ") is " + result.recordset[0].credit;
-//                                    if (CustNum == "" || CustNum == null) {
-//                                        speechText = "Credit limit for " + CustName + " is " + result.recordset[0].credit;
-//                                    }
-//                                    else if (CustName == "" || CustName == null) {
-//                                        speechText = "Credit limit for Customer" + CustNum + " is " + result.recordset[0].credit;
-//                                    }
                                 }
                                 speech = speechText;
                                 SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
@@ -256,18 +248,34 @@ module.exports = function(req, res) {
                             speechText = "Please provide the Customer name or number."
                         } else {
                             if (CustNum == "" || CustNum == null) {
-                                speechText = "Total Exposure for " + CustName + " is $5423152. If you want to know the Total Exposure for any other customer just give me the Customer name or Number.";
+                                qString = "Select * from jde WHERE CustName  = '" + CustName + "'";
                             } else if (CustName == "" || CustName == null) {
-                                speechText = "Total Exposure for Customer " + CustNum + "  is $5423152. If you want to know the Total Exposure for any other customer just say the Customer name or Number.";
+                                qString = "Select * from jde WHERE CustNum  = " + CustNum;
                             } else {
                                 speechText = "Error";
                             }
                         }
-                        speech = speechText;
-                        SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
-                            console.log("Finished!");
-                        });
-                        break;
+                        if(qString != ""){
+                            AwsDB( qString, req, res, function(result) {
+                                if( result.rowsAffected == 0){
+                                    speechText = "No records found.";
+                                }
+                                else{
+                                    speechText = "Total Exposure for " + CustName + "(" + CustNum  + ") is " + result.recordset[0].exposure;
+                                }
+                                speech = speechText;
+                                SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+                                    console.log("Finished!");
+                                });
+                            });
+                        }
+                        else{
+                            speech = speechText;
+                            SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+                                console.log("Finished!");
+                            });
+                        }
+                        
 
                     } catch (e) {
                         speechText = "Error";
@@ -277,6 +285,7 @@ module.exports = function(req, res) {
                             console.log("Finished!");
                         });
                     }
+                    break;
                 }
 
         }
