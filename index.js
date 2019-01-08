@@ -186,7 +186,7 @@ module.exports = function(req, res) {
                     break;
                 }
 
-            case (intentName == "JDE_creditlimit"):
+            case (intentName == "JDE_creditlimit" || intentName == "JDE_creditlimit_name"):
                 {
                     try {
                         var CustNum = req.body.result.parameters.CustNum;
