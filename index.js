@@ -225,7 +225,6 @@ module.exports = function(req, res) {
                                 SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
                                     console.log("Finished!");
                                 });
-                                break;
                             });
                         }
                         else{
@@ -233,7 +232,6 @@ module.exports = function(req, res) {
                             SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
                                 console.log("Finished!");
                             });
-                            break;
                         }
 
                     } catch (e) {
@@ -244,6 +242,7 @@ module.exports = function(req, res) {
                             console.log("Finished!");
                         });
                     }
+                    break;
                 }
                 
                 
