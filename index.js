@@ -8,12 +8,14 @@ module.exports = function(req, res) {
     var date = require('date-and-time');
 
     var SendResponse = require("./sendResponse");
-
+    var AwsDB = require("./awsdb");
 
     var speech = "";
     var speechText = "";
     var suggests = [];
     var contextOut = [];
+    
+    var qString= "";
 
     var intentName = req.body.result.metadata.intentName;
     console.log("intentName : " + intentName);
@@ -196,18 +198,39 @@ module.exports = function(req, res) {
                             speechText = "Please provide the Customer name or number."
                         } else {
                             if (CustNum == "" || CustNum == null) {
-                                speechText = "Credit limit for " + CustName + " is $5423152. If you want to know the credit limit for any other customer just let me know the Customer name or Number.";
+                                qString = "Select * from jde WHERE CustName  = " + CustName;
+                                //speechText = "Credit limit for " + CustName + " is $5423152. If you want to know the credit limit for any other customer just let me know the Customer name or Number.";
                             } else if (CustName == "" || CustName == null) {
-                                speechText = "Credit limit for Customer " + CustNum + "  is $5423152. If you want to know the credit limit for any other customer just provide the Customer name or Number.";
+                                qString = "Select * from jde WHERE CustNum  = " + CustNum;
+                                //speechText = "Credit limit for Customer " + CustNum + "  is $5423152. If you want to know the credit limit for any other customer just provide the Customer name or Number.";
                             } else {
                                 speechText = "Error";
                             }
                         }
-                        speech = speechText;
-                        SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
-                            console.log("Finished!");
-                        });
-                        break;
+                        if(qString != ""){
+                            AwsDB( qString, req, res, function(result) {
+                                if( result.rowsAffected == 0){
+                                    speechText = "No records found.";
+                                }
+                                else{
+                                    speechText = "Credit limit for " + (CustName || CustNum) + " is " + result.recordset[0].credit;
+//                                    if (CustNum == "" || CustNum == null) {
+//                                        speechText = "Credit limit for " + CustName + " is " + result.recordset[0].credit;
+//                                    }
+//                                    else if (CustName == "" || CustName == null) {
+//                                        speechText = "Credit limit for Customer" + CustNum + " is " + result.recordset[0].credit;
+//                                    }
+                                    
+                                }
+                            });
+                        }
+                        else{
+                            speech = speechText;
+                            SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+                                console.log("Finished!");
+                            });
+                            break;
+                        }
 
                     } catch (e) {
                         speechText = "Error";
