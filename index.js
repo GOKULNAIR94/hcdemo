@@ -220,8 +220,12 @@ module.exports = function(req, res) {
 //                                    else if (CustName == "" || CustName == null) {
 //                                        speechText = "Credit limit for Customer" + CustNum + " is " + result.recordset[0].credit;
 //                                    }
-                                    
                                 }
+                                speech = speechText;
+                                SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+                                    console.log("Finished!");
+                                });
+                                break;
                             });
                         }
                         else{
