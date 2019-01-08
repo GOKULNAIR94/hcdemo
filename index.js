@@ -189,6 +189,9 @@ module.exports = function(req, res) {
                             speechText = "Credit limit for " + CustName + "  is $5423152";
                         }
                     }
+                    SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+                        console.log("Finished!");
+                    });
                     break;
                 }
 
