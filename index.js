@@ -287,6 +287,18 @@ module.exports = function(req, res) {
                     }
                     break;
                 }
+                case (intentName == "JDE_creditlimit_update" ):{
+                    var CustNum = req.body.result.parameters.CustNum;
+                    var CustName = req.body.result.parameters.CustName;
+                    console.log("Credit = " + CustName +", " + CustNum);
+                    break;
+                }
+                case (intentName == "JDE_exposure_update" ):{
+                    var CustNum = req.body.result.parameters.CustNum;
+                    var CustName = req.body.result.parameters.CustName;
+                    console.log("Exposure = " + CustName +", " + CustNum);
+                    break;
+                }
 
         }
 
