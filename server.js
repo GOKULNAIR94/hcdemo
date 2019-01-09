@@ -12,7 +12,7 @@ restService.use(bodyParser.urlencoded({
 restService.use(bodyParser.json());
 
 var Index = require("./index");
-
+var uiDB = require("./jdeuidb");
 var speech = "";
 
 
@@ -28,39 +28,50 @@ restService.post('/inputmsg', function(req, res) {
     }
 
 });
-
+var qString = "";
 restService.get('/getCust', function(req, res) {
     req.body.headers = req.headers;
-    var qString ="Select * from jde";
+    qString ="Select * from jde";
     try {
-        var sql = require("mssql");
-        var sqlConfig = {
-            user: 'viki',
-            password: 'Oracle123',
-            server: 'vikisql.c1abev5luwmn.us-west-1.rds.amazonaws.com',
-            database: 'viki'
-        }
-        var qString = "Select * from jde";
-        console.log("Qstring : " + qString);
-        sql.connect(sqlConfig, function(err) {
-            var request = new sql.Request();
-            request.query( qString, function(err, output) {
-                if (err){ 
-                    console.log(err);
-                    sql.close();
-                }
-                else{
-                    console.log(JSON.stringify(output)); // Result in JSON format
-                    sql.close();
-                    //var responseObject = JSON.parse(output);
-                    res.json(output.recordsets);
-                } 
-            });
+        //sadasda
+        uiDB( qString, req, res, function(result) {
+            res.json(result.recordsets);
         });
     } catch (e) {
         console.log("Error : " + e);
     }
 
+});
+
+restService.get('/edit/:custNum', function(req, res) {
+    var custNum = req.params.custNum;
+    console.log("Num : " + custNum);
+    qString = "Select * from jde WHERE CustNum = " + custNum;
+    try {
+        //sadasda
+            uiDB( qString, req, res, function(result) {
+                res.json(result.recordsets[0]);
+            });
+        } catch (e) {
+            console.log("Error : " + e);
+        }
+    
+});
+
+restService.post('/save', function(req, res) {
+    var cust = req.body;
+    console.log("Num : " + cust.CustNum);
+    console.log("Name : " + cust.CustName + ", " + cust.credit + ", " + cust.exposure);
+    qString = "Update jde SET credit = " + cust.credit + ", exposure = " + cust.exposure + " WHERE CustName = '" + cust.CustName + "'";
+    console.log("Qs = " + qString);
+    try {
+        //sadasda
+            uiDB( qString, req, res, function(result) {
+                res.json(result.rowsAffected);
+            });
+        } catch (e) {
+            console.log("Error : " + e);
+        }
 });
 
 restService.get('/home', onRequest);

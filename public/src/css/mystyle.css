@@ -28,3 +28,13 @@
 .bg-dark {
     background-color: #1e4a6d !important;
 }
+
+
+.edit{
+    width: 80%
+}
+
+#selectRecord:hover {
+    cursor: pointer;
+    transition: 0.5s;
+}
