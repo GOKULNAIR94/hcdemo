@@ -7,8 +7,8 @@ app.config(function($routeProvider) {    $routeProvider
 .when("/", {
         templateUrl : "login.html"
     })
-.when("/success", {
-        templateUrl : "success.html"
+.when("/home", {
+        templateUrl : "home.html"
     })
 .when("/loading", {
         templateUrl : "loading.html"
