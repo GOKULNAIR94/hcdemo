@@ -39,7 +39,7 @@ app.controller('mainCont', function($scope, $http, $location) {
         $http({
             method: 'GET',
 //            url: 'http://localhost:9000/edit/' + custNum
-        url: 'https://subscrib.herokuapp.com/edit' + custNum
+        url: 'https://subscrib.herokuapp.com/edit/' + custNum
             
         }).then(function (response) {
             console.log("Response : " + JSON.stringify(response.data[0]));
