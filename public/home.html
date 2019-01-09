@@ -1,30 +1,36 @@
-<table class="bigtable" align="center" cellpadding="0" cellspacing="10px" width="80%">
-    <tr>
-        <td>
+<div class="col-md-12">
 
-            <table class="intable" align="center" cellpadding="5px" cellspacing="0" width="100%">
-                <tr style="height:60px">
-                    <th style="width: 30%;">Name</th>
-                    <th style="width: 30%;">Id</th>
-                    <th style="width: 30%;">Created By</th>
-                </tr>
-                <tr ng-repeat="y in parent.items | filter:search" style="text-align: center;height:45px">
-                    <td>
-                        {{y.Client}}
-                    </td>
-                    <td id="selectRecord" ng-click="deal(y.Id);setisEditing(y.Id);">
-                        <a>{{ y.RecordName}}</a>
-                    </td>
-                    <td>
-                        {{ y.CreatedBy }}
-                    </td>
-                </tr>
-                <tr align="center">
-                    <td style="padding: 40px 0 0 0;" colspan="4"><a  href="#newrecord">
-                        <button class="ghostButton" ng-click="setisCreating();">New</button></a>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-</table>
+   
+    <div class="col-md-12">
+        
+        
+            
+        <table class="table table-striped">
+            <thead>
+            <tr>
+              <td><input type="text" ng-model="searchCustNum"></td>
+              <td><input type="text" ng-model="searchCustName"></td>
+              <td><input type="text" ng-model="searchCredit"></td>
+              <td><input type="text" ng-model="searchExposure"></td>
+            </tr>
+            </thead>
+          <thead>
+            <tr>
+              <th scope="col">Customer Number</th>
+              <th scope="col">Customer Name</th>
+              <th scope="col">Credit Limit</th>
+              <th scope="col">Total Exposure</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="cust in custs | filter:searchCustName">
+              <td scope="row">{{cust.CustNum}}</td>
+              <td><a href="#/">{{cust.CustName}}</a></td>
+              <td>{{cust.credit}}</td>
+              <td>{{cust.exposure}}</td>
+            </tr>
+            
+          </tbody>
+        </table>
+    </div>
+</div>

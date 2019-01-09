@@ -29,6 +29,40 @@ restService.post('/inputmsg', function(req, res) {
 
 });
 
+restService.get('/getCust', function(req, res) {
+    req.body.headers = req.headers;
+    var qString ="Select * from jde";
+    try {
+        var sql = require("mssql");
+        var sqlConfig = {
+            user: 'viki',
+            password: 'Oracle123',
+            server: 'vikisql.c1abev5luwmn.us-west-1.rds.amazonaws.com',
+            database: 'viki'
+        }
+        var qString = "Select * from jde";
+        console.log("Qstring : " + qString);
+        sql.connect(sqlConfig, function(err) {
+            var request = new sql.Request();
+            request.query( qString, function(err, output) {
+                if (err){ 
+                    console.log(err);
+                    sql.close();
+                }
+                else{
+                    console.log(JSON.stringify(output)); // Result in JSON format
+                    sql.close();
+                    //var responseObject = JSON.parse(output);
+                    res.json(output.recordsets);
+                } 
+            });
+        });
+    } catch (e) {
+        console.log("Error : " + e);
+    }
+
+});
+
 restService.get('/home', onRequest);
 restService.use(express.static(path.join(__dirname, '/public')));
 

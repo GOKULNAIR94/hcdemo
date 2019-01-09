@@ -18,42 +18,15 @@ app.config(function($routeProvider) {    $routeProvider
 
 app.controller('mainCont', function($scope, $http, $location) {
     console.log("This is Main Controller!");
-    
-    $scope.sendData = function (newuser) {
-        console.log(newuser);
-        var req = {
-            method: 'POST',
-            url: 'https://vikii.herokuapp.com/newuser',
-            data: newuser
-        }
-        $http(req).then(function (result) {
-            console.log( "Result : " + JSON.stringify(result));
-            if(result.status == 200){
-                
-                if(result.data == "Success"){
-                    $scope.loginerror = false;
-                    $location.path('\success');
-                    $scope.loginerror = "";
-                    setTimeout(function () {
-                        window.close();
-                    }, 1500);
-                }
-                    
-                else{
-                    $scope.loginerror = true;
-                    $scope.errormessage = "Please check the credentials and try again! ";
-                    $location.path('\/');                
-                }
-                    
-            }
-                
-            else{
-                alert("Error");
-                $scope.errormessage = "Unexpected Error Occured! Try again later!";
-                $location.path('\/');
-            }
+    $location.path('\loading');
+    $http({
+            method: 'GET',
+            url: 'http://localhost:9000/getCust'
             
+        }).then(function (response) {
+            console.log("Response : " + JSON.stringify(response.data[0]));
+            $scope.custs = response.data[0];
+            $location.path('\/');
         });
-    };
     
 });
