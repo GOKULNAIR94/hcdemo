@@ -10,7 +10,12 @@ restService.use(bodyParser.urlencoded({
     extended: true
 }));
 restService.use(bodyParser.json());
-restService.setHeader('Access-Control-Allow-Origin', '*');
+
+restService.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    next();
+});
+
 var Index = require("./index");
 var uiDB = require("./jdeuidb");
 var speech = "";
