@@ -292,6 +292,39 @@ module.exports = function(req, res) {
                     var CustName = req.body.result.parameters.CustName;
                     var credit = req.body.result.parameters.credit;
                     console.log("Credit = " + CustName +", " + CustNum + ", " + credit);
+                    if ((CustNum == "" || CustNum == null) && (CustName == "" || CustName == null)) {
+                            speechText = "Please provide the Customer name or number."
+                        } else {
+                            if (CustNum == "" || CustNum == null) {
+
+                                qString = "Update jde SET credit = " + credit + " WHERE CustName = '" + CustName + "'";
+                            } else if (CustName == "" || CustName == null) {
+
+                                qString = "Update jde SET credit = " + credit + " WHERE CustNum = '" + CustNum + "'";
+                            } else {
+                                speechText = "Error";
+                            }
+                        }
+                    if(qString != ""){
+                            AwsDB( qString, req, res, function(result) {
+                                if( result.rowsAffected == 0){
+                                    speechText = "No records found.";
+                                }
+                                else{
+                                    speechText = "Record successfully updated.";
+                                }
+                                speech = speechText;
+                                SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+                                    console.log("Finished!");
+                                });
+                            });
+                        }
+                        else{
+                            speech = speechText;
+                            SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+                                console.log("Finished!");
+                            });
+                        }
                     break;
                 }
                 case (intentName == "JDE_exposure_update" || intentName == "JDE_exposure_name_update" ):{
@@ -299,6 +332,39 @@ module.exports = function(req, res) {
                     var CustName = req.body.result.parameters.CustName;
                     var exposure = req.body.result.parameters.exposure;
                     console.log("Exposure = " + CustName +", " + CustNum + ", " + exposure);
+                    if ((CustNum == "" || CustNum == null) && (CustName == "" || CustName == null)) {
+                            speechText = "Please provide the Customer name or number."
+                        } else {
+                            if (CustNum == "" || CustNum == null) {
+
+                                qString = "Update jde SET exposure = " + exposure + " WHERE CustName = '" + CustName + "'";
+                            } else if (CustName == "" || CustName == null) {
+
+                                qString = "Update jde SET exposure = " + exposure + " WHERE CustNum = '" + CustNum + "'";
+                            } else {
+                                speechText = "Error";
+                            }
+                        }
+                    if(qString != ""){
+                            AwsDB( qString, req, res, function(result) {
+                                if( result.rowsAffected == 0){
+                                    speechText = "No records found.";
+                                }
+                                else{
+                                    speechText = "Record successfully updated."
+                                }
+                                speech = speechText;
+                                SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+                                    console.log("Finished!");
+                                });
+                            });
+                        }
+                        else{
+                            speech = speechText;
+                            SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+                                console.log("Finished!");
+                            });
+                        }
                     break;
                 }
 
