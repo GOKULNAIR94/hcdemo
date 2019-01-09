@@ -24,8 +24,8 @@ app.controller('mainCont', function($scope, $http, $location) {
     $location.path('\loading');
     $http({
             method: 'GET',
-            url: 'http://localhost:9000/getCust'
-        //url: 'https://subscrib.herokuapp.com/getCust' 
+//            url: 'http://localhost:9000/getCust'
+        url: 'https://subscrib.herokuapp.com/getCust' 
             
         }).then(function (response) {
             console.log("Response : " + JSON.stringify(response.data[0]));
@@ -38,8 +38,8 @@ app.controller('mainCont', function($scope, $http, $location) {
         $location.path('\loading');
         $http({
             method: 'GET',
-            url: 'http://localhost:9000/edit/' + custNum
-        //url: 'https://subscrib.herokuapp.com/getCust' 
+//            url: 'http://localhost:9000/edit/' + custNum
+        url: 'https://subscrib.herokuapp.com/edit' + custNum
             
         }).then(function (response) {
             console.log("Response : " + JSON.stringify(response.data[0]));
@@ -54,9 +54,10 @@ app.controller('mainCont', function($scope, $http, $location) {
         $location.path('\loading');
         $http({
             method: 'POST',
-            url: 'http://localhost:9000/save',
+//            url: 'http://localhost:9000/save',
+            url: 'https://subscrib.herokuapp.com/save',
             data : cust
-        //url: 'https://subscrib.herokuapp.com/getCust' 
+        
             
         }).then(function (response) {
             console.log("Response : " + JSON.stringify(response.data[0]));
