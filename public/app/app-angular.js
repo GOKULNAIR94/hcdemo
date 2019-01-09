@@ -21,7 +21,7 @@ app.controller('mainCont', function($scope, $http, $location) {
     $location.path('\loading');
     $http({
             method: 'GET',
-            url: 'http://localhost:9000/getCust'
+            url: 'https://subscrib.herokuapp.com/getCust'
             
         }).then(function (response) {
             console.log("Response : " + JSON.stringify(response.data[0]));
