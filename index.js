@@ -287,16 +287,18 @@ module.exports = function(req, res) {
                     }
                     break;
                 }
-                case (intentName == "JDE_creditlimit_update" ):{
+                case (intentName == "JDE_creditlimit_update" || intentName == "JDE_creditlimit_name_update" ):{
                     var CustNum = req.body.result.parameters.CustNum;
                     var CustName = req.body.result.parameters.CustName;
-                    console.log("Credit = " + CustName +", " + CustNum);
+                    var credit = req.body.result.parameters.credit;
+                    console.log("Credit = " + CustName +", " + CustNum + ", " + credit);
                     break;
                 }
-                case (intentName == "JDE_exposure_update" ):{
+                case (intentName == "JDE_exposure_update" || intentName == "JDE_exposure_name_update" ):{
                     var CustNum = req.body.result.parameters.CustNum;
                     var CustName = req.body.result.parameters.CustName;
-                    console.log("Exposure = " + CustName +", " + CustNum);
+                    var exposure = req.body.result.parameters.exposure;
+                    console.log("Exposure = " + CustName +", " + CustNum + ", " + exposure);
                     break;
                 }
 
