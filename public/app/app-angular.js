@@ -5,10 +5,10 @@ app.run(function(){
 
 app.config(function($routeProvider) {    $routeProvider
 .when("/", {
-        templateUrl : "login.html"
-    })
-.when("/home", {
         templateUrl : "home.html"
+    })
+.when("/login", {
+        templateUrl : "login.html"
     })
 .when("/loading", {
         templateUrl : "loading.html"

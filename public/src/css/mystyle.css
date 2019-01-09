@@ -8,3 +8,14 @@
   animation: spin 1.5s linear infinite;
     margin: 25% 38%;
 }
+
+.container{
+    margin-top: 150px;
+    margin: 65px 0 0 0;
+    padding: 0;
+    line-height: 0px;
+}
+
+.bg-dark {
+    background-color: #1e4a6d !important;
+}

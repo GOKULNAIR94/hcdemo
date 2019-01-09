@@ -29,7 +29,7 @@ restService.post('/inputmsg', function(req, res) {
 
 });
 
-restService.get('/login', onRequest);
+restService.get('/home', onRequest);
 restService.use(express.static(path.join(__dirname, '/public')));
 
 
