@@ -70,8 +70,7 @@ app.controller('mainCont', function($scope, $http, $location) {
     
     $scope.cancel = function () {
         $location.path('\/');
-        setTimeout(function () {
-            location.reload();
-        }, 500);
+        location.reload();
+        
     };
 });
