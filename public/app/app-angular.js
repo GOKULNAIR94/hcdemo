@@ -70,6 +70,6 @@ app.controller('mainCont', function($scope, $http, $location) {
     
     $scope.cancel = function () {
         location.reload();
-        $location.path('\/');
+        //$location.path('\/');
     };
 });
