@@ -188,7 +188,7 @@ module.exports = function(req, res) {
                     break;
                 }
 
-            case (intentName == "JDE_creditlimit" || intentName == "JDE_creditlimit_name"):
+            case (intentName == "JDE_creditlimit" || intentName == "JDE_creditlimit_name || intentName == "JDE_exposure_followcredit"):
                 {
                     try {
                         var CustNum = req.body.result.parameters.CustNum;
@@ -238,7 +238,7 @@ module.exports = function(req, res) {
                 }
                 
                 
-                case (intentName == "JDE_exposure" || intentName == "JDE_exposure_name"):
+                case (intentName == "JDE_exposure" || intentName == "JDE_exposure_name || intentName == "JDE_creditlimit_followexposure"):
                 {
                     try {
                         var CustNum = req.body.result.parameters.CustNum;
@@ -287,7 +287,7 @@ module.exports = function(req, res) {
                     }
                     break;
                 }
-                case (intentName == "JDE_creditlimit_update" || intentName == "JDE_creditlimit_name_update" ):{
+                case (intentName == "JDE_creditlimit_update" || intentName == "JDE_creditlimit_name_update" || intentName == "JDE_exposure_followcredit_update" ):{
                     var CustNum = req.body.result.parameters.CustNum;
                     var CustName = req.body.result.parameters.CustName;
                     var credit = req.body.result.parameters.credit;
@@ -327,7 +327,7 @@ module.exports = function(req, res) {
                         }
                     break;
                 }
-                case (intentName == "JDE_exposure_update" || intentName == "JDE_exposure_name_update" ):{
+                case (intentName == "JDE_exposure_update" || intentName == "JDE_exposure_name_update" || intentName == "JDE_creditlimit_followexposure_update" ):{
                     var CustNum = req.body.result.parameters.CustNum;
                     var CustName = req.body.result.parameters.CustName;
                     var exposure = req.body.result.parameters.exposure;
