@@ -38,3 +38,7 @@
     cursor: pointer;
     transition: 0.5s;
 }
+
+.table-striped{
+    line-height: 1.9 !important;
+}
