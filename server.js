@@ -35,6 +35,7 @@ restService.post('/inputmsg', function(req, res) {
     }
 
 });
+
 var qString = "";
 restService.get('/getCust', function(req, res) {
     req.body.headers = req.headers;
