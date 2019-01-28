@@ -37,7 +37,7 @@ module.exports = function( req, res) {
                                 if( result.rowsAffected == 0){
                                     speechText = "No records found.";
 									if (CustName != "" && CustName != null) {
-										qString = "Select * from jde WHERE CustNum  LIKE " + CustNum.substring(0, CustNum.length/2) + "%";
+										qString = "Select * from jde WHERE CustName  LIKE '" + CustNum.substring(0, CustNum.length/2) + "%'";
 										AwsDB( qString, req, res, function(result1) {
 											if( result1.rowsAffected == 0){
 												speechText = "No records found.";
@@ -52,7 +52,7 @@ module.exports = function( req, res) {
 											SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
 												console.log("Finished!");
 											});
-										});
+										})	;
 									}else{
 										speechText = "Error";
 										speech = speechText;
@@ -74,7 +74,6 @@ module.exports = function( req, res) {
                             });
                         }
                         else{
-							speechText = "Error";
                             speech = speechText;
                             SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
                                 console.log("Finished!");
