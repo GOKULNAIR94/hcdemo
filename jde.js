@@ -67,7 +67,7 @@ module.exports = function( req, res) {
 												suggests = [];
 												for( var i = 0; i < result1.recordset.length; i++){
 													speechText += result1.recordset[i].CustNum + " : " + result1.recordset[i].CustName + ",\n";
-													suggests
+													suggests.push({ "title": result1.recordset[i].CustNum );
 												}
 											}
 											speech = speechText;
