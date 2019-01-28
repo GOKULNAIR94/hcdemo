@@ -49,8 +49,10 @@ module.exports = function( req, res) {
 														else{
 															speechText = "Please select one of the following:\n";
 															speechText += "Customer ";
+															suggests = [];
 															for( var i = 0; i < result1.recordset.length; i++){
 																speechText += result1.recordset[i].CustNum + " : " + result1.recordset[i].CustName + ",\n";
+																suggests.push({ "title": result1.recordset[i].CustNum );
 															}
 														}
 														speech = speechText;
@@ -62,8 +64,10 @@ module.exports = function( req, res) {
 											else{
 												speechText = "Please select one of the following:\n";
 												speechText += "Customer ";
+												suggests = [];
 												for( var i = 0; i < result1.recordset.length; i++){
 													speechText += result1.recordset[i].CustNum + " : " + result1.recordset[i].CustName + ",\n";
+													suggests
 												}
 											}
 											speech = speechText;
