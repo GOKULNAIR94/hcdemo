@@ -52,7 +52,7 @@ module.exports = function( req, res) {
 											SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
 												console.log("Finished!");
 											});
-										};
+										});
 									}else{
 										speechText = "Error";
 										speech = speechText;
