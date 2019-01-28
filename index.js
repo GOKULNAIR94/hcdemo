@@ -198,7 +198,7 @@ module.exports = function(req, res) {
                 }
                 
                 
-                case (intentName == "JDE_exposure" || intentName == "JDE_exposure_name || intentName == "JDE_creditlimit_followexposure"):
+                case (intentName == "JDE_exposure" || intentName == "JDE_exposure_name" || intentName == "JDE_creditlimit_followexposure"):
                 {
                     try {
                         var CustNum = req.body.result.parameters.CustNum;
