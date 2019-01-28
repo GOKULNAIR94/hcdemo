@@ -187,11 +187,12 @@ module.exports = function( req, res) {
                                 }
                                 else{
                                     speechText = "Total Exposure for " + result.recordset[0].CustName + "(" + result.recordset[0].CustNum  + ") is " + result.recordset[0].exposure;
+									speech = speechText;
+									SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+										console.log("Finished!");
+									});
                                 }
-                                speech = speechText;
-                                SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
-                                    console.log("Finished!");
-                                });
+                                
                             });
                         }
                         else{
