@@ -41,7 +41,23 @@ module.exports = function( req, res) {
 										qString = "Select * from jde WHERE CustName  LIKE '" + CustName.substr(0, (CustName.length)/2) + "%'";
 										AwsDB( qString, req, res, function(result1) {
 											if( result1.rowsAffected == 0){
-												speechText = "No records found.";
+												qString = "Select * from jde WHERE CustName  LIKE '" + CustName.substr(0, (CustName.length)/4) + "%'";
+													AwsDB( qString, req, res, function(result1) {
+														if( result1.rowsAffected == 0){
+															speechText = "No records found.";
+														}
+														else{
+															speechText = "Please select one of the following:\n";
+															speechText += "Customer ";
+															for( var i = 0; i < result1.recordset.length; i++){
+																speechText += result1.recordset[i].CustNum + " : " + result1.recordset[i].CustName + ",\n";
+															}
+														}
+														speech = speechText;
+														SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+															console.log("Finished!");
+														});
+													});
 											}
 											else{
 												speechText = "Please select one of the following:\n";
@@ -54,7 +70,7 @@ module.exports = function( req, res) {
 											SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
 												console.log("Finished!");
 											});
-										})	;
+										});
 									}else{
 										speechText = "Error";
 										speech = speechText;
