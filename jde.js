@@ -69,11 +69,12 @@ module.exports = function( req, res) {
 													speechText += result1.recordset[i].CustNum + " : " + result1.recordset[i].CustName + ",\n";
 													suggests.push({ "title": "" + result1.recordset[i].CustNum });
 												}
+												speech = speechText;
+												SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+													console.log("Finished!");
+												});
 											}
-											speech = speechText;
-											SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
-												console.log("Finished!");
-											});
+											
 										});
 									}else{
 										speechText = "Error";
@@ -168,11 +169,12 @@ module.exports = function( req, res) {
 													speechText += result1.recordset[i].CustNum + " : " + result1.recordset[i].CustName + ",\n";
 													suggests.push({ "title" : "" + result1.recordset[i].CustNum });
 												}
+												speech = speechText;
+												SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+													console.log("Finished!");
+												});
 											}
-											speech = speechText;
-											SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
-												console.log("Finished!");
-											});
+											
 										});
 									}else{
 										speechText = "Error";
