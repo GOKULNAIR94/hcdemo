@@ -189,7 +189,7 @@ module.exports = function(req, res) {
                     break;
                 }
 
-            case (intentName == "JDE_creditlimit" || intentName == "JDE_creditlimit_name" || intentName == "JDE_exposure_followcredit" || intentName == "JDE_exposure" || intentName == "JDE_exposure_name" || intentName == "JDE_creditlimit_followexposure" || intentName == "JDE_creditlimit_update" || intentName == "JDE_creditlimit_name_update" || intentName == "JDE_exposure_followcredit_update" || intentName == "JDE_exposure_update" || intentName == "JDE_exposure_name_update" || intentName == "JDE_creditlimit_followexposure_update" ||  ):
+            case (intentName.indexOf("JDE_") == 0):
                 {
 					Jde(req, res, function(result) {
 						console.log("Index Called : " + JSON.stringify(result));
