@@ -51,8 +51,9 @@ module.exports = function( req, res) {
 															speechText += "Customer ";
 															suggests = [];
 															for( var i = 0; i < result1.recordset.length; i++){
-																speechText += result1.recordset[i].CustNum + " : " + result1.recordset[i].CustName + ",\n";
-																suggests.push({ "title": result1.recordset[i].CustNum });
+																var num = result1.recordset[i].CustNum;
+																speechText += num + " : " + result1.recordset[i].CustName + ",\n";
+																suggests.push({ "title" : num });
 															}
 														}
 														speech = speechText;
@@ -66,8 +67,9 @@ module.exports = function( req, res) {
 												speechText += "Customer ";
 												suggests = [];
 												for( var i = 0; i < result1.recordset.length; i++){
-													speechText += result1.recordset[i].CustNum + " : " + result1.recordset[i].CustName + ",\n";
-													suggests.push({ "title": result1.recordset[i].CustNum });
+													var num = result1.recordset[i].CustNum;
+													speechText += num + " : " + result1.recordset[i].CustName + ",\n";
+													suggests.push({ "title" : num });
 												}
 											}
 											speech = speechText;
@@ -151,7 +153,7 @@ module.exports = function( req, res) {
 															suggests = [];
 															for( var i = 0; i < result1.recordset.length; i++){
 																speechText += result1.recordset[i].CustNum + " : " + result1.recordset[i].CustName + ",\n";
-																suggests.push({ "title": parseInt(result1.recordset[i].CustNum) });
+																suggests.push({ "title": result1.recordset[i].CustNum });
 															}
 														}
 														speech = speechText;
@@ -166,7 +168,7 @@ module.exports = function( req, res) {
 												suggests = [];
 												for( var i = 0; i < result1.recordset.length; i++){
 													speechText += result1.recordset[i].CustNum + " : " + result1.recordset[i].CustName + ",\n";
-													suggests.push({ "title": parseInt(result1.recordset[i].CustNum) });
+													suggests.push({ "title" : result1.recordset[i].CustNum });
 												}
 											}
 											speech = speechText;
