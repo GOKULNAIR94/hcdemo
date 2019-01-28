@@ -36,17 +36,45 @@ module.exports = function( req, res) {
                             AwsDB( qString, req, res, function(result) {
                                 if( result.rowsAffected == 0){
                                     speechText = "No records found.";
+									if (CustName != "" && CustName != null) {
+										qString = "Select * from jde WHERE CustNum  LIKE " + CustNum.substring(0, CustNum.length/2) + "%";
+										AwsDB( qString, req, res, function(result1) {
+											if( result1.rowsAffected == 0){
+												speechText = "No records found.";
+											}
+											else{
+												speechText = "Please select one of the following:";
+												for( var i = 0; i < result1.length; i++){
+													speechText = "Customer " + result.recordset[i].CustNum + " : " + result.recordset[i].CustName + ",\n";
+												}
+											}
+											speech = speechText;
+											SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+												console.log("Finished!");
+											});
+										};
+									}else{
+										speechText = "Error";
+										speech = speechText;
+										SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+											console.log("Finished!");
+										});
+									}
+									
+									
                                 }
                                 else{
                                     speechText = "Credit limit for " + result.recordset[0].CustName + "(" + result.recordset[0].CustNum  + ") is " + result.recordset[0].credit;
+									speech = speechText;
+									SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+										console.log("Finished!");
+									});
                                 }
-                                speech = speechText;
-                                SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
-                                    console.log("Finished!");
-                                });
+                                
                             });
                         }
                         else{
+							speechText = "Error";
                             speech = speechText;
                             SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
                                 console.log("Finished!");
