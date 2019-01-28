@@ -189,7 +189,7 @@ module.exports = function(req, res) {
                     break;
                 }
 
-            case (intentName == "JDE_creditlimit" || intentName == "JDE_creditlimit_name || intentName == "JDE_exposure_followcredit"):
+            case (intentName == "JDE_creditlimit" || intentName == "JDE_creditlimit_name" || intentName == "JDE_exposure_followcredit"):
                 {
 					Jde(req, res, function(result) {
 						console.log("Index Called : " + JSON.stringify(result));
