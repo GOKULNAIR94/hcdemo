@@ -37,15 +37,16 @@ module.exports = function( req, res) {
                                 if( result.rowsAffected == 0){
                                     speechText = "No records found.";
 									if (CustName != "" && CustName != null) {
-										qString = "Select * from jde WHERE CustName  LIKE '" + CustName.substring(0, CustNum.length/2) + "%'";
+										console.log("CustName : " + CustName.length);
+										qString = "Select * from jde WHERE CustName  LIKE '" + CustName.substring(0, (CustNum.length)/2) + "%'";
 										AwsDB( qString, req, res, function(result1) {
 											if( result1.rowsAffected == 0){
 												speechText = "No records found.";
 											}
 											else{
-												speechText = "Please select one of the following:";
-												for( var i = 0; i < result1.length; i++){
-													speechText = "Customer " + result1.recordset[i].CustNum + " : " + result1.recordset[i].CustName + ",\n";
+												speechText = "Please select one of the following:\n";
+												for( var i = 0; i < result1.recordset.length; i++){
+													speechText += "Customer " + result1.recordset[i].CustNum + " : " + result1	.recordset[i].CustName + ",\n";
 												}
 											}
 											speech = speechText;
