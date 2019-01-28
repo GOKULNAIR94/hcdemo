@@ -135,6 +135,55 @@ module.exports = function( req, res) {
                             AwsDB( qString, req, res, function(result) {
                                 if( result.rowsAffected == 0){
                                     speechText = "No records found.";
+									if (CustName != "" && CustName != null) {
+										console.log("CustName : " + CustName.length);
+										qString = "Select * from jde WHERE CustName  LIKE '" + CustName.substr(0, (CustName.length)/2) + "%'";
+										AwsDB( qString, req, res, function(result1) {
+											if( result1.rowsAffected == 0){
+												qString = "Select * from jde WHERE CustName  LIKE '" + CustName.substr(0, (CustName.length)/4) + "%'";
+													AwsDB( qString, req, res, function(result1) {
+														if( result1.rowsAffected == 0){
+															speechText = "No records found.";
+														}
+														else{
+															speechText = "Please select one of the following:\n";
+															speechText += "Customer ";
+															suggests = [];
+															for( var i = 0; i < result1.recordset.length; i++){
+																speechText += result1.recordset[i].CustNum + " : " + result1.recordset[i].CustName + ",\n";
+																suggests.push({ "title": result1.recordset[i].CustNum });
+															}
+														}
+														speech = speechText;
+														SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+															console.log("Finished!");
+														});
+													});
+											}
+											else{
+												speechText = "Please select one of the following:\n";
+												speechText += "Customer ";
+												suggests = [];
+												for( var i = 0; i < result1.recordset.length; i++){
+													speechText += result1.recordset[i].CustNum + " : " + result1.recordset[i].CustName + ",\n";
+													suggests.push({ "title": result1.recordset[i].CustNum });
+												}
+											}
+											speech = speechText;
+											SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+												console.log("Finished!");
+											});
+										});
+									}else{
+										speechText = "Error";
+										speech = speechText;
+										SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+											console.log("Finished!");
+										});
+									}
+									
+									
+                                
                                 }
                                 else{
                                     speechText = "Total Exposure for " + result.recordset[0].CustName + "(" + result.recordset[0].CustNum  + ") is " + result.recordset[0].exposure;
