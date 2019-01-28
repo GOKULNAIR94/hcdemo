@@ -191,8 +191,8 @@ module.exports = function(req, res) {
 
             case (intentName.indexOf("JDE_") == 0):
                 {
-					Jde(req, res, function(result) {
-						console.log("Index Called : " + JSON.stringify(result));
+					Jde(req, res, function() {
+						console.log("JDE Called : ");
 						break;
 					});
                 }

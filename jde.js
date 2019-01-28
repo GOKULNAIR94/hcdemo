@@ -1,7 +1,9 @@
-module.exports = function(qString, req, resp, callback) {
+module.exports = function( req, res) {
 	
 	var SendResponse = require("./sendResponse");
     var AwsDB = require("./awsdb");
+	
+    var intentName = req.body.result.metadata.intentName;
 	
 	var speech = "";
     var speechText = "";
