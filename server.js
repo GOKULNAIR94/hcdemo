@@ -39,7 +39,7 @@ restService.post('/inputmsg', function(req, res) {
 var qString = "";
 restService.get('/getCust', function(req, res) {
     req.body.headers = req.headers;
-    qString ="Select * from jde";
+    qString ="Select * from jde ORDER BY CustName;";
     try {
         //sadasda
         uiDB( qString, req, res, function(result) {
