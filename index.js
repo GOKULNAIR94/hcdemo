@@ -193,8 +193,9 @@ module.exports = function(req, res) {
                 {
 					Jde(req, res, function() {
 						console.log("JDE Called : ");
-						break;
+						
 					});
+					break;
                 }
 				
 				case (intentName == "smalltalk.confirmation.cancel"):
