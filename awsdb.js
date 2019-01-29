@@ -17,7 +17,8 @@ module.exports = function ( qString, req, resp, callback){
                 console.log(err);
                 sql.close();
                 resp.json({
-                    message : "Unable to process your request. Please try again later."
+                    speech : "Unable to process your request. Please try again later.",
+					displayText : speech
                 });
             }
             else{

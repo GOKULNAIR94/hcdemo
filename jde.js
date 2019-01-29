@@ -29,7 +29,7 @@ module.exports = function( req, res) {
                             } else if (CustName == "" || CustName == null) {
                                 qString = "Select * from jde WHERE CustNum  = " + CustNum;
                             } else {
-                                speechText = "Error";
+                                speechText = "Unable to process your request. Please try again later.";
                             }
                         }
                         if(qString != ""){
@@ -77,7 +77,7 @@ module.exports = function( req, res) {
 											
 										});
 									}else{
-										speechText = "Error";
+										speechText = "Unable to process your request. Please try again later.";
 										speech = speechText;
 										SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
 											console.log("Finished!");
@@ -115,7 +115,7 @@ module.exports = function( req, res) {
                         }
 
                     } catch (e) {
-                        speechText = "Error";
+                        speechText = "Unable to process your request. Please try again later.";
                         speech = speechText;
                         console.log("Error: " + e);
                         SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
@@ -140,7 +140,7 @@ module.exports = function( req, res) {
                             } else if (CustName == "" || CustName == null) {
                                 qString = "Select * from jde WHERE CustNum  = " + CustNum;
                             } else {
-                                speechText = "Error";
+                                speechText = "Unable to process your request. Please try again later.";
                             }
                         }
                         if(qString != ""){
@@ -188,7 +188,7 @@ module.exports = function( req, res) {
 											
 										});
 									}else{
-										speechText = "Error";
+										speechText = "Unable to process your request. Please try again later.";
 										speech = speechText;
 										SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
 											console.log("Finished!");
@@ -226,7 +226,7 @@ module.exports = function( req, res) {
                         
 
                     } catch (e) {
-                        speechText = "Error";
+                        speechText = "Unable to process your request. Please try again later.";
                         speech = speechText;
                         console.log("Error: " + e);
                         SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
@@ -250,7 +250,7 @@ module.exports = function( req, res) {
 
                                 qString = "Update jde SET credit = " + credit + " WHERE CustNum = '" + CustNum + "'";
                             } else {
-                                speechText = "Error";
+                                speechText = "Unable to process your request. Please try again later.";
                             }
                         }
                     if(qString != ""){
@@ -290,7 +290,7 @@ module.exports = function( req, res) {
 
                                 qString = "Update jde SET exposure = " + exposure + " WHERE CustNum = '" + CustNum + "'";
                             } else {
-                                speechText = "Error";
+                                speechText = "Unable to process your request. Please try again later.";
                             }
                         }
                     if(qString != ""){
@@ -319,7 +319,7 @@ module.exports = function( req, res) {
 		}
 
     } catch (e) {
-        speechText = "Error";
+        speechText = "Unable to process your request. Please try again later.";
         speech = speechText;
         console.log("Error: " + e);
         SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
