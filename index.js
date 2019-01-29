@@ -188,15 +188,6 @@ module.exports = function(req, res) {
                     });
                     break;
                 }
-
-            case (intentName.indexOf("JDE_") == 0):
-                {
-					Jde(req, res, function() {
-						console.log("JDE Called : ");
-						
-					});
-					break;
-                }
 				
 				case (intentName == "smalltalk.confirmation.cancel"):
                 {
@@ -212,6 +203,18 @@ module.exports = function(req, res) {
                     });
                     break;
                 }
+				
+
+            case (intentName.indexOf("JDE_") == 0):
+                {
+					Jde(req, res, function() {
+						console.log("JDE Called : ");
+						
+					});
+					break;
+                }
+				
+				
 
         }
 
