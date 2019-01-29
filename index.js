@@ -196,6 +196,21 @@ module.exports = function(req, res) {
 						break;
 					});
                 }
+				
+				case (intentName == "smalltalk.confirmation.cancel"):
+                {
+					console.log("Res :" + req.body.result.contexts);
+					contextOut = req.body.result.contexts;
+					for(var i=0; i < contextOut.length; i++){
+						contextOut[i].lifespan = 0;
+					}
+                    speechText = "Cancelled.";
+					speech = speechText;
+                    SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+                        console.log("Finished!");
+                    });
+                    break;
+                }
 
         }
 
