@@ -38,10 +38,10 @@ module.exports = function( req, res) {
                                     speechText = "No records found.";
 									if (CustName != "" && CustName != null) {
 										console.log("CustName : " + CustName.length);
-										qString = "Select * from jde WHERE CustName  LIKE '" + CustName + "%' OR REPLACE(REPLACE(REPLACE(CustName, '#',''), '*', ''), '\"', '') LIKE '" + CustName + "%'";
+										qString = "Select * from jde WHERE CustName  LIKE '" + CustName + "%' OR REPLACE(REPLACE(REPLACE(CustName, '.',''), ',', ''), '/', '') LIKE '" + CustName + "%'";
 										AwsDB( qString, req, res, function(result1) {
 											if( result1.rowsAffected == 0){
-												qString = "Select * from jde WHERE CustName  LIKE '" + CustName.substr(0, (CustName.length)/2) + "%' OR REPLACE(REPLACE(REPLACE(CustName, '#',''), '*', ''), '\"', '') LIKE '" + CustName + "%'";
+												qString = "Select * from jde WHERE CustName  LIKE '" + CustName.substr(0, (CustName.length)/2) + "%' OR REPLACE(REPLACE(REPLACE(CustName, '.',''), ',', ''), '/', '') LIKE '" + CustName.substr(0, (CustName.length)/2) + "%'";
 													AwsDB( qString, req, res, function(result1) {
 														if( result1.rowsAffected == 0){
 															speechText = "No records found.";
