@@ -196,7 +196,7 @@ module.exports = function(req, res) {
 					for(var i=0; i < contextOut.length; i++){
 						contextOut[i].lifespan = 0;
 					}
-                    speechText = "Cancelled.";
+                    speechText = "Dismissed! Let me know what I should do next.";
 					speech = speechText;
                     SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
                         console.log("Finished!");
