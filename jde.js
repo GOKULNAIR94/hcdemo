@@ -87,11 +87,22 @@ module.exports = function( req, res) {
 									
                                 }
                                 else{
-                                    speechText = "Credit limit for " + result.recordset[0].CustName + "(" + result.recordset[0].CustNum  + ") is " + result.recordset[0].credit;
+									if( result.rowsAffected == 1){
+										speechText = "Credit limit for " + result.recordset[0].CustName + "(" + result.recordset[0].CustNum  + ") is " + result.recordset[0].credit;										
+									}else{
+										speechText = "Please select one of the following:\n";
+												speechText += "Customer ";
+										suggests = [];
+												for( var i = 0; i < result.recordset.length; i++){
+													speechText += result.recordset[i].CustNum + " : " + result.recordset[i].CustName + ",\n";
+													suggests.push({ "title": "" + result.recordset[i].CustNum });
+												}										
+									}
 									speech = speechText;
-									SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
-										console.log("Finished!");
-									});
+												SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+													console.log("Finished!");
+												});
+                                    
                                 }
                                 
                             });
@@ -186,7 +197,18 @@ module.exports = function( req, res) {
 									
                                 }
                                 else{
-                                    speechText = "Total Exposure for " + result.recordset[0].CustName + "(" + result.recordset[0].CustNum  + ") is " + result.recordset[0].exposure;
+									if( result.rowsAffected == 1){
+										speechText = "Total Exposure for " + result.recordset[0].CustName + "(" + result.recordset[0].CustNum  + ") is " + result.recordset[0].exposure;
+									}
+									else{
+										speechText = "Please select one of the following:\n";
+												speechText += "Customer ";
+												suggests = [];
+												for( var i = 0; i < result.recordset.length; i++){
+													speechText += result.recordset[i].CustNum + " : " + result.recordset[i].CustName + ",\n";
+													suggests.push({ "title" : "" + result.recordset[i].CustNum });
+												}
+									}
 									speech = speechText;
 									SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
 										console.log("Finished!");
