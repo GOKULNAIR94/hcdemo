@@ -88,7 +88,8 @@ module.exports = function( req, res) {
                                 }
                                 else{
 									if( result.rowsAffected == 1){
-										speechText = "Credit limit for " + result.recordset[0].CustName + "(" + result.recordset[0].CustNum  + ") is " + result.recordset[0].credit;										
+										speechText = "Credit limit for " + result.recordset[0].CustName + "(" + result.recordset[0].CustNum  + ") is " + result.recordset[0].credit;
+                                        speech = "Credit limit for " + result.recordset[0].CustName + "" is " + result.recordset[0].credit;
 									}else{
 										speechText = "Please select one of the following:\n";
                                         speech = speechText;
