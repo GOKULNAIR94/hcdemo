@@ -70,7 +70,7 @@ module.exports = function(req, res) {
                 {
                     var appName = req.body.result.parameters.application;
                     switch(appName){
-                            case(jde):{
+                            case("jde"):{
                                 speechText = "Cool. For JD Edwards, I can help you with the following services, \nCredit Limit, \nTotal Exposure. \nHow can I help you?";
                                 speech = speechText;
                                 suggests = [{
