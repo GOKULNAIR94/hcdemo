@@ -200,6 +200,7 @@ module.exports = function( req, res) {
                                 else{
 									if( result.rowsAffected == 1){
 										speechText = "Total Exposure for " + result.recordset[0].CustName + "(" + result.recordset[0].CustNum  + ") is " + result.recordset[0].exposure;
+										speech = "Total Exposure for " + result.recordset[0].CustName + " is " + result.recordset[0].exposure;
 									}
 									else{
 										speechText = "Please select one of the following:\n";
