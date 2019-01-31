@@ -52,11 +52,40 @@ module.exports = function(req, res) {
         switch (true) {
             case (intentName == "Default Welcome Intent"):
                 {
-                    speech = "Hi! How can i help?";
-                    return res.json({
-                        speech: speech,
-                        displayText: speech
-                    })
+                    speechText = "Hi! I am Aura, I am here to assist you in working with your Oracle Applications. Which applciation would you like to access?";
+                    speech = speechText;
+                    suggests = [{
+                            "title": "JD Edwards"
+                        }, {
+                            "title": "EBS"
+                        }, {
+                            "title": "Engagment Cloud"
+                        }];
+                    SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+                        console.log("Finished!");
+                    });
+                    break;
+                }
+            case (intentName == "Default Fallback Intent_application"):
+                {
+                    var appName = req.body.result.parameters.application;
+                    switch(appName){
+                            case(jde):{
+                                speechText = "Cool. For JD Edwards, I can help you with the following services, \nCredit Limit, \nTotal Exposure. \nHow can I help you?";
+                                speech = speechText;
+                                suggests = [{
+                                    "title": "Credit Limit"
+                                }, {
+                                    "title": "Total Exposure"
+                                }, {
+                                    "title": "Engagment Cloud"
+                                }];
+                            }
+                    }
+                    
+                    SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+                        console.log("Finished!");
+                    });
                     break;
                 }
 

@@ -20,6 +20,7 @@ module.exports = function( req, res) {
                     try {
                         var CustNum = req.body.result.parameters.CustNum;
                         var CustName = req.body.result.parameters.CustName;
+                        CustName = CustName.replace(/[^\w\s]/gi, '');
                         console.log("Cust Num = " + CustNum + "\nCust Name =" + CustName);
                         if ((CustNum == "" || CustNum == null) && (CustName == "" || CustName == null)) {
                             speechText = "Please provide the Customer name or number."
