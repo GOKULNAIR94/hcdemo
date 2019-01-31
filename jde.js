@@ -48,6 +48,7 @@ module.exports = function( req, res) {
 														}
 														else{
 															speechText = "Please select one of the following:\n";
+                                                            speech = speechText;
 															speechText += "Customer ";
 															suggests = [];
 															for( var i = 0; i < result1.recordset.length; i++){
@@ -55,7 +56,6 @@ module.exports = function( req, res) {
 																suggests.push({ "title" : "" + result1.recordset[i].CustNum });
 															}
 														}
-														speech = speechText;
 														SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
 															console.log("Finished!");
 														});
@@ -63,13 +63,13 @@ module.exports = function( req, res) {
 											}
 											else{
 												speechText = "Please select one of the following:\n";
+                                                speech = speechText;
 												speechText += "Customer ";
 												suggests = [];
 												for( var i = 0; i < result1.recordset.length; i++){
 													speechText += result1.recordset[i].CustNum + " : " + result1.recordset[i].CustName + ",\n";
 													suggests.push({ "title": "" + result1.recordset[i].CustNum });
 												}
-												speech = speechText;
 												SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
 													console.log("Finished!");
 												});
@@ -91,6 +91,7 @@ module.exports = function( req, res) {
 										speechText = "Credit limit for " + result.recordset[0].CustName + "(" + result.recordset[0].CustNum  + ") is " + result.recordset[0].credit;										
 									}else{
 										speechText = "Please select one of the following:\n";
+                                        speech = speechText;
 												speechText += "Customer ";
 										suggests = [];
 												for( var i = 0; i < result.recordset.length; i++){
@@ -98,7 +99,6 @@ module.exports = function( req, res) {
 													suggests.push({ "title": "" + result.recordset[i].CustNum });
 												}										
 									}
-									speech = speechText;
 												SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
 													console.log("Finished!");
 												});
@@ -159,6 +159,7 @@ module.exports = function( req, res) {
 														}
 														else{
 															speechText = "Please select one of the following:\n";
+                                                            speech = speechText;
 															speechText += "Customer ";
 															suggests = [];
 															for( var i = 0; i < result1.recordset.length; i++){
@@ -166,7 +167,6 @@ module.exports = function( req, res) {
 																suggests.push({ "title": "" + result1.recordset[i].CustNum });
 															}
 														}
-														speech = speechText;
 														SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
 															console.log("Finished!");
 														});
@@ -174,13 +174,13 @@ module.exports = function( req, res) {
 											}
 											else{
 												speechText = "Please select one of the following:\n";
+                                                speech = speechText;
 												speechText += "Customer ";
 												suggests = [];
 												for( var i = 0; i < result1.recordset.length; i++){
 													speechText += result1.recordset[i].CustNum + " : " + result1.recordset[i].CustName + ",\n";
 													suggests.push({ "title" : "" + result1.recordset[i].CustNum });
 												}
-												speech = speechText;
 												SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
 													console.log("Finished!");
 												});
@@ -202,6 +202,7 @@ module.exports = function( req, res) {
 									}
 									else{
 										speechText = "Please select one of the following:\n";
+                                        speech = speechText;
 												speechText += "Customer ";
 												suggests = [];
 												for( var i = 0; i < result.recordset.length; i++){
@@ -209,7 +210,6 @@ module.exports = function( req, res) {
 													suggests.push({ "title" : "" + result.recordset[i].CustNum });
 												}
 									}
-									speech = speechText;
 									SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
 										console.log("Finished!");
 									});
