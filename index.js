@@ -52,7 +52,7 @@ module.exports = function(req, res) {
         switch (true) {
             case (intentName == "Default Welcome Intent"):
                 {
-                    speechText = "Hi! I am Aura, I am here to assist you in working with your Oracle Applications. Which applciation would you like to access?";
+                    speechText = "Hi! I am Aura, I am here to assist you in working with your Oracle Applications. Which application would you like to access?";
                     speech = speechText;
                     suggests = [{
                             "title": "JD Edwards"
@@ -66,7 +66,7 @@ module.exports = function(req, res) {
                     });
                     break;
                 }
-            case (intentName == "Default Fallback Intent_application"):
+            case (intentName == "Default Welcome Intent_application"):
                 {
                     var appName = req.body.result.parameters.application;
                     switch(appName){
