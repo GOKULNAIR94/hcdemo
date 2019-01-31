@@ -1,4 +1,6 @@
 module.exports = function ( speech, text, suggests, contextOut, req, res, callback){ 
+    if(speech == "")
+        speech = text;
 
     switch(req.body.originalRequest.source) {
         case "google":{
