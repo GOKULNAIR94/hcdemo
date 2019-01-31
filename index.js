@@ -81,6 +81,10 @@ module.exports = function(req, res) {
                                     "title": "Engagment Cloud"
                                 }];
                             }
+                        default:{
+                            speechText = "I don't have access to " + appName + " yet.";
+                            speech = speechText;
+                        }
                     }
                     
                     SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
