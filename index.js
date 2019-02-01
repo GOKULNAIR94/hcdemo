@@ -80,6 +80,7 @@ module.exports = function(req, res) {
                                 }, {
                                     "title": "Engagment Cloud"
                                 }];
+                                break;
                             }
                         default:{
                             speechText = "I don't have access to " + appName + " yet.";
