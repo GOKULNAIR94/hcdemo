@@ -1,6 +1,7 @@
 module.exports = function(anaConfig, req, res, callback) {
     var CustNum = req.body.result.parameters.CustNum;
     var CustName = req.body.result.parameters.CustName;
+    CustName = CustName.replace(/[^\w\s]/gi, '');
     var jde_attrib = req.body.result.parameters.jde_attrib;
 
 	var qString = "";
