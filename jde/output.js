@@ -1,8 +1,9 @@
 module.exports = function(response, anaConfig, req, res, level, callback) {
     var CustNum = req.body.result.parameters.CustNum;
     var CustName = req.body.result.parameters.CustName;
+    CustName = CustName.replace(/[^\w\s]/gi, '');
     var jde_attrib = req.body.result.parameters.jde_attrib;
-     console.log(" Output js: \nCust Num = " + CustNum + "\nCust Name =" + CustName + "\jde_attrib =" + jde_attrib);
+     console.log(" Output js: \nCust Num = " + CustNum + "\nCust Name =" + CustName + "\njde_attrib =" + jde_attrib);
     
     var Webservice = require("./webservice");
     var SendResponse = require("../sendResponse");
