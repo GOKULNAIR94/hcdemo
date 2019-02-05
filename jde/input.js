@@ -13,7 +13,7 @@ module.exports = function(anaConfig, req, res, callback) {
         text = "Please provide the Customer name or number. If you are not sure, please try to provide the first few letters of the Customer Name";
         res.json({
             speech : speech,
-            displayText : speech
+            displayText : text
         });
     } else {
         if (CustNum == "" || CustNum == null) {
