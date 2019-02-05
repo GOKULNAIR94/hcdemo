@@ -1,5 +1,5 @@
 module.exports = function(response, anaConfig, req, res, level, callback) {
-    var SendResponse = require("./sendResponse");
+    var SendResponse = require("../sendResponse");
     var speech = "";
     var speechText = "";
     var suggests = [];
