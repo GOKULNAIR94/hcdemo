@@ -5,10 +5,12 @@ module.exports = function(anaConfig, req, res, callback) {
 
 	var qString = "";
 	var speech = "";
+	var text = "";
 	
     console.log("Cust Num = " + CustNum + "\nCust Name =" + CustName + "\jde_attrib =" + jde_attrib);
     if ((CustNum == "" || CustNum == null) && (CustName == "" || CustName == null)) {
-        speech = "Please provide the Customer name or number."
+        speech = "Please provide the Customer name or number.";
+        text = "Please provide the Customer name or number. If you are not sure, please try to provide the first few letters of the Customer Name";
         res.json({
             speech : speech,
             displayText : speech
