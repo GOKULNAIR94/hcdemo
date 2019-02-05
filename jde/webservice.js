@@ -1,12 +1,11 @@
-module.exports = function ( qString, req, resp, callback){
-
-    console.log("Header :" + JSON.stringify(req.body));
+module.exports = function( qString, anaConfig, req, res, callback ) {
+    
     var sql = require("mssql");
     var sqlConfig = {
-        user: req.body.headers.sqluser,
-        password: req.body.headers.sqlpw,
-        server: req.body.headers.sqlserver,
-        database: 'viki'
+        user: anaConfig.webservice.user,
+        password: anaConfig.webservice.password,
+        server: anaConfig.webservice.server,
+        database: anaConfig.webservice.database
     }
     console.log("SQL :" + JSON.stringify(sqlConfig));
     console.log("Qstring : " + qString);
@@ -16,8 +15,9 @@ module.exports = function ( qString, req, resp, callback){
             if (err){ 
                 console.log(err);
                 sql.close();
-                resp.json({
-                    speech : "Unable to process your request. Please try again later.",
+                var speech = "Unable to process your request. Please try again later.";
+                res.json({
+                    speech : speech,
 					displayText : speech
                 });
             }

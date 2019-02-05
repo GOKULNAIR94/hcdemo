@@ -11,30 +11,50 @@ restService.use(bodyParser.urlencoded({
 }));
 restService.use(bodyParser.json());
 
-restService.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
-    next();
-});
+var Input,Output,Webservice; 
+var Invoke = require("./invoker");
+var SendResponse = require("./sendResponse");
 
-var Index = require("./index");
-var uiDB = require("./jdeuidb");
+var intentName = "";
+
+var qString = "";
+
 var speech = "";
+var speechText = "";
+var suggests = [];
+var contextOut = [];
 
+var anaConfig;
+var listConfig = [ {
+        "invoke" : ["input", "webservice", "output"],
+        "intent" : ["JDE_creditlimit", "JDE_creditlimit_name", "JDE_creditlimit_follow"],
+        "webservice" : {
+            user: 'viki',
+            password: 'Oracle123',
+            server: 'vikisql.c1abev5luwmn.us-west-1.rds.amazonaws.com',
+            database: 'viki'
+           },
+	   "folder" : "jde"
+    },{
+        "invoke" : ["output"],
+        "intent" : ["Default Welcome Intent","Default Welcome Intent_application"],
+	   "folder" : "appSelect"
+    }
+];
 
 restService.post('/inputmsg', function(req, res) {
-    req.body.headers = req.headers;
-
-    try {
-        Index(req, res, function(result) {
-            console.log("Index Called : " + JSON.stringify(result));
-        });
-    } catch (e) {
-        console.log("Error : " + e);
+	intentName = req.body.result.metadata.intentName
+    for(var i =0; i < listConfig.length; i ++){
+        if( listConfig[i].intent.includes(intentName) ){
+            anaConfig = listConfig[i];
+            break;
+        }
     }
-
+	Invoke( 0, 1, anaConfig, req, res, function(){
+        console.log("Done");
+    });
 });
+
 
 var qString = "";
 restService.get('/getCust', function(req, res) {
