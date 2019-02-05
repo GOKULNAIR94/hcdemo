@@ -7,7 +7,7 @@ module.exports = function(anaConfig, req, res, callback) {
 	var speech = "";
 	var text = "";
 	
-    console.log("Cust Num = " + CustNum + "\nCust Name =" + CustName + "\jde_attrib =" + jde_attrib);
+    console.log("Cust Num = " + CustNum + "\nCust Name =" + CustName + "\njde_attrib =" + jde_attrib);
     if ((CustNum == "" || CustNum == null) && (CustName == "" || CustName == null)) {
         speech = "Please provide the Customer name or number.";
         text = "Please provide the Customer name or number. If you are not sure, please try to provide the first few letters of the Customer Name";
