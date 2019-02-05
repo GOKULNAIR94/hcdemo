@@ -37,8 +37,6 @@ module.exports = function(response, anaConfig, req, res, level, callback) {
                                     "title": "Credit Limit"
                                 }, {
                                     "title": "Total Exposure"
-                                }, {
-                                    "title": "Engagment Cloud"
                                 }];
                                 break;
                             }
