@@ -19,7 +19,7 @@ module.exports = function( index, inputInvoke, anaConfig, req, res) {
                     Webservice = require("./" + anaConfig.folder + "/webservice");
                     var qString = inputInvoke;
                     Webservice( qString, anaConfig, req, res, function(resultWeb){
-                        console.log("Result Web : " + resultWeb );
+                        console.log("Result Web : " + JSON.stringify(resultWeb) );
                         outputInvoke = resultWeb;
                         Invoke( index+1, outputInvoke, anaConfig, req, res, function(){
                             console.log("Done");
