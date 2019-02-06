@@ -1,4 +1,4 @@
-module.exports = function(anaConfig, req, res, callback) {
+module.exports = function( dummy, anaConfig, req, res, callback) {
     var CustNum = req.body.result.parameters.CustNum;
     var CustName = req.body.result.parameters.CustName;
     CustName = CustName.replace(/[^\w\s]/gi, '');
