@@ -1,10 +1,10 @@
 module.exports = function(response, anaConfig, req, res, callback) {
     try {
-        
+
         var level = 0;
         level = anaConfig.output.variable.level;
         console.log("-----------------------------Level :" + level);
-            
+
         var CustNum = req.body.result.parameters.CustNum;
         var CustName = req.body.result.parameters.CustName;
         CustName = CustName.replace(/[^\w\s]/gi, '');
@@ -12,7 +12,7 @@ module.exports = function(response, anaConfig, req, res, callback) {
         console.log(" Output js: \nCust Num = " + CustNum + "\nCust Name =" + CustName + "\njde_attrib =" + jde_attrib);
 
         var SendResponse = require("../sendResponse");
-        
+
         var Webservice = require("./webservice");
         var Output = require("./output")
 
@@ -30,9 +30,9 @@ module.exports = function(response, anaConfig, req, res, callback) {
                 console.log("Short : " + shortName + "\nLength : " + shortName.length + "\nLevel : " + level);
                 if (shortName.length >= 3 && level <= 3) {
                     qString = "Select * from jde WHERE CustName  LIKE '" + shortName + "%' OR REPLACE(REPLACE(REPLACE(CustName, '.',''), ',', ''), '/', '') LIKE '" + shortName + "%'";
-                    
+
                     Webservice(qString, anaConfig, req, res, function(resultWeb1) {
-                        anaConfig.output.variable.level = level +1;
+                        anaConfig.output.variable.level = level + 1;
                         Output(resultWeb1, anaConfig, req, res, function(resultOut) {
                             console.log("Result Out : + " + resultOut);
                         });

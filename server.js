@@ -11,7 +11,7 @@ restService.use(bodyParser.urlencoded({
 }));
 restService.use(bodyParser.json());
 
-var Input,Output,Webservice; 
+var Input, Output, Webservice;
 var Invoke = require("./invoker");
 var SendResponse = require("./sendResponse");
 
@@ -27,43 +27,42 @@ var contextOut = [];
 
 
 restService.post('/inputmsg', function(req, res) {
-    
+
     var anaConfig;
-var listConfig = [ {
-        "intent" : ["JDE_creditlimit", "JDE_creditlimit_name", "JDE_creditlimit_follow"],
-    "invoke" : ["input", "webservice", "output"],
-    "output" : {
-        "variable" : {
-            "level" : 1
-        }
-    },
-        "webservice" : {
+    var listConfig = [{
+        "intent": ["JDE_creditlimit", "JDE_creditlimit_name", "JDE_creditlimit_follow"],
+        "invoke": ["input", "webservice", "output"],
+        "output": {
+            "variable": {
+                "level": 1
+            }
+        },
+        "webservice": {
             user: 'viki',
             password: 'Oracle123',
             server: 'vikisql.c1abev5luwmn.us-west-1.rds.amazonaws.com',
             database: 'viki'
-           },
-	   "folder" : "jde"
-    },{
-        "invoke" : ["output"],
-        "intent" : ["Default Welcome Intent","Default Welcome Intent_application"],
-	   "folder" : "appSelect"
-    }
-];
-    
-	intentName = req.body.result.metadata.intentName
-    for(var i =0; i < listConfig.length; i ++){
-        if( listConfig[i].intent.includes(intentName) ){
+        },
+        "folder": "jde"
+    }, {
+        "invoke": ["output"],
+        "intent": ["Default Welcome Intent", "Default Welcome Intent_application"],
+        "folder": "appSelect"
+    }];
+
+    intentName = req.body.result.metadata.intentName
+    for (var i = 0; i < listConfig.length; i++) {
+        if (listConfig[i].intent.includes(intentName)) {
             anaConfig = listConfig[i];
             break;
         }
     }
-	Invoke( 0, 1, anaConfig, req, res, function(){
+    Invoke(0, 1, anaConfig, req, res, function() {
         console.log("Done");
     });
 });
 
-restService.use(function (req, res, next) {
+restService.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
@@ -75,10 +74,10 @@ var uiDB = require("./jdeuidb");
 var qString = "";
 restService.get('/getCust', function(req, res) {
     req.body.headers = req.headers;
-    qString ="Select * from jde ORDER BY CustName;";
+    qString = "Select * from jde ORDER BY CustName;";
     try {
         //sadasda
-        uiDB( qString, req, res, function(result) {
+        uiDB(qString, req, res, function(result) {
             res.json(result.recordsets);
         });
     } catch (e) {
@@ -93,13 +92,13 @@ restService.get('/edit/:custNum', function(req, res) {
     qString = "Select * from jde WHERE CustNum = " + custNum;
     try {
         //sadasda
-            uiDB( qString, req, res, function(result) {
-                res.json(result.recordsets[0]);
-            });
-        } catch (e) {
-            console.log("Error : " + e);
-        }
-    
+        uiDB(qString, req, res, function(result) {
+            res.json(result.recordsets[0]);
+        });
+    } catch (e) {
+        console.log("Error : " + e);
+    }
+
 });
 
 restService.post('/save', function(req, res) {
@@ -110,20 +109,20 @@ restService.post('/save', function(req, res) {
     console.log("Qs = " + qString);
     try {
         //sadasda
-            uiDB( qString, req, res, function(result) {
-                res.json(result.rowsAffected);
-            });
-        } catch (e) {
-            console.log("Error : " + e);
-        }
+        uiDB(qString, req, res, function(result) {
+            res.json(result.rowsAffected);
+        });
+    } catch (e) {
+        console.log("Error : " + e);
+    }
 });
 
 restService.get('/home', onRequest);
 restService.use(express.static(path.join(__dirname, '/public')));
 
 
-function onRequest(request, response){
-  response.sendFile(path.join(__dirname, '/public/index.html'));
+function onRequest(request, response) {
+    response.sendFile(path.join(__dirname, '/public/index.html'));
 }
 
 restService.listen((process.env.PORT || 9000), function() {
