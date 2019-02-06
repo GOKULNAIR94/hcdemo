@@ -24,7 +24,11 @@ var speechText = "";
 var suggests = [];
 var contextOut = [];
 
-var anaConfig;
+
+
+restService.post('/inputmsg', function(req, res) {
+    
+    var anaConfig;
 var listConfig = [ {
         "intent" : ["JDE_creditlimit", "JDE_creditlimit_name", "JDE_creditlimit_follow"],
     "invoke" : ["input", "webservice", "output"],
@@ -46,10 +50,8 @@ var listConfig = [ {
 	   "folder" : "appSelect"
     }
 ];
-
-restService.post('/inputmsg', function(req, res) {
+    
 	intentName = req.body.result.metadata.intentName
-    anaConfig.output.variable.level = 1;
     for(var i =0; i < listConfig.length; i ++){
         if( listConfig[i].intent.includes(intentName) ){
             anaConfig = listConfig[i];
