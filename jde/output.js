@@ -3,7 +3,6 @@ module.exports = function(response, anaConfig, req, res, callback) {
 
         var level = 0;
         level = anaConfig.output.variable.level;
-        console.log("-----------------------------Level :" + level);
 
         var CustNum = req.body.result.parameters.CustNum;
         var CustName = req.body.result.parameters.CustName;
