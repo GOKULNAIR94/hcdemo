@@ -55,6 +55,15 @@ restService.post('/inputmsg', function(req, res) {
     });
 });
 
+restService.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
+    next();
+});
+
+var Index = require("./index");
+var uiDB = require("./jdeuidb");
 
 var qString = "";
 restService.get('/getCust', function(req, res) {
