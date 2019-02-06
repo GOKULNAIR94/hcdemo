@@ -49,6 +49,7 @@ var listConfig = [ {
 
 restService.post('/inputmsg', function(req, res) {
 	intentName = req.body.result.metadata.intentName
+    anaConfig.output.variable.level = 1;
     for(var i =0; i < listConfig.length; i ++){
         if( listConfig[i].intent.includes(intentName) ){
             anaConfig = listConfig[i];
