@@ -62,7 +62,6 @@ restService.use(function (req, res, next) {
     next();
 });
 
-var Index = require("./index");
 var uiDB = require("./jdeuidb");
 
 var qString = "";
