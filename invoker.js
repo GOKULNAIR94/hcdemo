@@ -3,7 +3,7 @@ module.exports = function( index, inputInvoke, anaConfig, req, res) {
         var outputInvoke;
         var Invoke = require("./invoker");
         var Invoker = require("./" + anaConfig.folder + "/" + anaConfig.invoke[index] );
-        Invoker( inputInvoke, anaConfig, req, res, function(resultInvoke){
+        Invoker( index, inputInvoke, anaConfig, req, res, function(resultInvoke){
             console.log("Result In: " + resultInvoke );
             Invoke( index+1, outputInvoke, anaConfig, req, res, function(){
                 console.log("Done");
