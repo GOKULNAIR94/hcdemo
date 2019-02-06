@@ -2,7 +2,7 @@ module.exports = function(response, anaConfig, req, res, callback) {
     try {
         
         var level = anaConfig.output.variable.level;
-        console.log("Level 1 :" + level);
+        console.log("-----------------------------Level :" + level);
             
         var CustNum = req.body.result.parameters.CustNum;
         var CustName = req.body.result.parameters.CustName;
