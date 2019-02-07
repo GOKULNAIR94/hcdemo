@@ -29,7 +29,8 @@ var contextOut = [];
 restService.post('/inputmsg', function(req, res) {
 
     var anaConfig;
-    var listConfig = JSON.parse(fs.readFileSync("./anaconfig.json", 'utf8'));
+    var listConfig = fs.readFileSync("./anaconfig.json", 'utf8');
+    listConfig = JSON.parse(listConfig);
 //    var listConfig = [{
 //        "intent": ["JDE_creditlimit", "JDE_creditlimit_name", "JDE_creditlimit_follow"],
 //        "invoke": ["input", "webservice", "output"],
