@@ -30,28 +30,8 @@ restService.post('/inputmsg', function(req, res) {
 
     var anaConfig;
     var listConfig = fs.readFileSync("./anaconfig.json", 'utf8');
-    console.log("COntent : " + listConfig)
+    //console.log("COntent : " + listConfig)
     listConfig = JSON.parse(listConfig);
-//    var listConfig = [{
-//        "intent": ["JDE_creditlimit", "JDE_creditlimit_name", "JDE_creditlimit_follow"],
-//        "invoke": ["input", "webservice", "output"],
-//        "output": {
-//            "variable": {
-//                "level": 1
-//            }
-//        },
-//        "webservice": {
-//            user: 'viki',
-//            password: 'Oracle123',
-//            server: 'vikisql.c1abev5luwmn.us-west-1.rds.amazonaws.com',
-//            database: 'viki'
-//        },
-//        "folder": "jde"
-//    }, {
-//        "invoke": ["output"],
-//        "intent": ["Default Welcome Intent", "Default Welcome Intent_application"],
-//        "folder": "appSelect"
-//    }];
 
     intentName = req.body.result.metadata.intentName
     for (var i = 0; i < listConfig.length; i++) {
