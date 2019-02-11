@@ -42,6 +42,12 @@ module.exports = function(input, anaConfig, reqp, resp, callback) {
                 });
             }
         });
+        
+        res.on("error", function(error) {
+            resp.json({
+                speech: "Unble to process your request. Please try again later."
+            });
+        });
     });
     
     if ( options.method == "POST" ) {
