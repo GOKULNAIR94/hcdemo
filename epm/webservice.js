@@ -1,38 +1,4 @@
 module.exports = function(input, anaConfig, reqp, resp, callback) {
-//    var http = require("http");
-//
-//var options = {
-//  "method": "GET",
-//  "hostname": "epbcs190141-epbcs-bjdn8pft.srv.ravcloud.com",
-//  "port": "9000",
-//  "path": "/HyperionPlanning/rest/11.1.2.4/applications/vision/jobs/14",
-//  "headers": {
-//    "authorization": "Basic ZXBtX2RlZmF1bHRfY2xvdWRfYWRtaW46ZXBtRGVtMHM=",
-//    "content-type": "application/json",
-//    "cache-control": "no-cache",
-//    "postman-token": "58d555c0-e434-3f59-14b3-8983b363e6db"
-//  }
-//};
-//
-//var req = http.request(options, function (res) {
-//  var chunks = [];
-//
-//  res.on("data", function (chunk) {
-//    chunks.push(chunk);
-//  });
-//
-//  res.on("end", function () {
-//    var body = Buffer.concat(chunks);
-//    console.log(body.toString());
-//      resp.json({
-//        speech: "Done"
-//    });
-//  });
-//});
-//
-//req.write(JSON.stringify({ jobType: 'CUBE_REFRESH', jobName: 'CubeRefresh' }));
-//req.end();
-    
     
     var http = require("http");
 

@@ -42,10 +42,15 @@ module.exports = function( response, anaConfig, req, res, callback) {
 
             case (intentName == "EPM_Jobs - custom" || intentName == "EPM_JobStatus"):
                 {
-                    speechText = "Status of job (Id: " + response.jobId + ") is " + response.descriptiveStatus + ", \n" + "JobName: " + response.jobName;
-                    if (response.descriptiveStatus == "Error") {
-                        speechText += ", \nDetails : " + response.details;
+                    if( response.status == 400){
+                        speechText = "The selected job status does not exist";
+                    }else{
+                        speechText = "Status of job (Id: " + response.jobId + ") is " + response.descriptiveStatus + ", \n" + "JobName: " + response.jobName;
+                        if (response.descriptiveStatus == "Error") {
+                            speechText += ", \nDetails : " + response.details;
+                        }
                     }
+                    
                     speech = speechText;
                     SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
                         console.log("Finished!");
