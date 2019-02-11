@@ -52,11 +52,14 @@ module.exports = function(response, anaConfig, req, res, callback) {
             }
         } else {
             if (response.rowsAffected == 1) {
-                if (jde_attrib == "credit")
+                if (jde_attrib == "credit"){
                     speechText = "Credit limit for " + response.recordset[0].CustName + "(" + response.recordset[0].CustNum + ") is " + response.recordset[0].credit;
+                    speech = "Credit limit for " + response.recordset[0].CustName + " is " + response.recordset[0].credit;
+                }
                 else {
                     if (jde_attrib == "exposure") {
                         speechText = "Total exposure for " + response.recordset[0].CustName + "(" + response.recordset[0].CustNum + ") is " + response.recordset[0].exposure;
+                        speech = "Total exposure for " + response.recordset[0].CustName + " is " + response.recordset[0].exposure;
                     } else {
                         speechText = "Unable to process your request please try again later."
                     }
