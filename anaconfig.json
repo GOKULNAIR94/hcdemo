@@ -13,6 +13,16 @@
         "database": "viki"
     },
     "folder": "jde"
+},{
+    "intent": ["EPM_"],
+    "invoke": ["input", "webservice", "output"],
+    "webservice": {
+        "user": "viki",
+        "password": "Oracle123",
+        "server": "vikisql.c1abev5luwmn.us-west-1.rds.amazonaws.com",
+        "database": "viki"
+    },
+    "folder": "epm"
 }, {
     "invoke": ["output"],
     "intent": ["Default Welcome Intent", "Default Welcome Intent_application"],
