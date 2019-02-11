@@ -1,7 +1,7 @@
 module.exports = function(response, anaConfig, req, res, level, callback) {
 
     var express = require('express');
-    //var bunyan = require('bunyan');
+    var bunyan = require('bunyan');
     var nodemailer = require('nodemailer');
     var restService = express();
     var bodyParser = require('body-parser');
