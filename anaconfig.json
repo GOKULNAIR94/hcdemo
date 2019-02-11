@@ -28,6 +28,10 @@
     "intent": ["Default Welcome Intent", "Default Welcome Intent_application"],
     "folder": "appSelect"
 }, {
+    "invoke": ["sendemail"],
+    "intent": ["ADS_HyperionReport","reporting"],
+    "folder": "report"
+}, {
     "invoke": ["dismiss"],
     "intent": ["smalltalk.confirmation.cancel"],
     "folder": "generic"
