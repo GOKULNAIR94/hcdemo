@@ -10,6 +10,9 @@ module.exports = function( response, anaConfig, req, res, callback) {
         var contextOut = [];
 
         var intentName = req.body.result.metadata.intentName;
+        var appName = req.body.result.parameters.epm_application;
+        if (appName == "" || appName == null)
+            appName = "vision";
 
         switch (true) {
             case (intentName == "EPM_MDXQuery"):
@@ -25,7 +28,7 @@ module.exports = function( response, anaConfig, req, res, callback) {
 
             case (intentName == "EPM_Jobs"):
                 {
-                    speechText = "Job (Id: " + response.jobId + ") submitted for Cube Refresh (Application – ITOH) with a current status of " + response.descriptiveStatus + ". \nPlease check in a few minutes for the updated status.";
+                    speechText = "Job (Id: " + response.jobId + ") submitted for Cube Refresh (Application – " + appName + ") with a current status of " + response.descriptiveStatus + ". \nPlease check in a few minutes for the updated status.";
                     contextOut = [{
                         "name": "jobid",
                         "lifespan": 1,
