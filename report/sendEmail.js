@@ -59,7 +59,7 @@ module.exports = function(response, anaConfig, req, res, level, callback) {
             subject = 'Departmental Expenses Corporate Report';
         } else {
             if (intentName == 'reporting') {
-                to_email = "kaaman.agarwal@lntinfotech.com"; //req.body.result.parameters.email;
+                to_email = "gokulgnair94@gmail.com"; //req.body.result.parameters.email;
                 reportName = req.body.result.parameters.reportName;
                 yearName = req.body.result.parameters.year;
 
@@ -87,7 +87,7 @@ module.exports = function(response, anaConfig, req, res, level, callback) {
                 // Comma separated list of recipients
                 to: to_email,
 
-                bcc: 'gokul.nair@lntinfotech.com',
+                bcc: 'gokulgnair94@gmail.com',
 
                 // Subject of the message
                 subject: subject, //
