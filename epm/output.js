@@ -46,12 +46,6 @@ module.exports = function( response, anaConfig, req, res, callback) {
                     if (response.descriptiveStatus == "Error") {
                         speechText += ", \nDetails : " + response.details;
                     }
-                    SendResponse(speech, suggests, contextOut, req, res, function() {
-                        console.log("Finished!");
-                    });
-                    if (response.descriptiveStatus == "Error") {
-                        speechText += ", \nDetails : " + response.details;
-                    }
                     speech = speechText;
                     SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
                         console.log("Finished!");
