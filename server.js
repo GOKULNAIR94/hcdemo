@@ -33,7 +33,7 @@ restService.post('/inputmsg', function(req, res) {
             break;
         }
     }
-    if(anaConfig.folder != null || anaConfig.folder != "" ){
+    if(anaConfig.folder != null && anaConfig.folder != "" ){
         Invoke(0, 1, anaConfig, req, res, function() {
             console.log("Done");
         });
