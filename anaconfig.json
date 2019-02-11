@@ -14,7 +14,7 @@
     },
     "folder": "jde"
 },{
-    "intent": ["EPM_"],
+    "intent": ["EPM_MDXQuery","EPM_JobStatus","EPM_Jobs","EPM_Jobs - custom"],
     "invoke": ["input", "webservice", "output"],
     "webservice": {
         "user": "viki",

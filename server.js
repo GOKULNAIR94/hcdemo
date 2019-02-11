@@ -23,13 +23,12 @@ restService.post('/inputmsg', function(req, res) {
 
     var anaConfig = {};
     var listConfig = fs.readFileSync("./anaconfig.json", 'utf8');
-    console.log("COntent : " + listConfig)
+    //console.log("COntent : " + listConfig)
     listConfig = JSON.parse(listConfig);
 
     intentName = req.body.result.metadata.intentName
-    console.log("intentName : " + intentName)
     for (var i = 0; i < listConfig.length; i++) {
-        if (listConfig[i].intent.includes(intentName) || intentName.indexOf(listConfig[i].intent[0]) ) {
+        if (listConfig[i].intent.includes(intentName)) {
             anaConfig = listConfig[i];
             break;
         }
