@@ -26,7 +26,7 @@ restService.post('/inputmsg', function(req, res) {
     //console.log("COntent : " + listConfig)
     listConfig = JSON.parse(listConfig);
 
-    intentName = req.body.result.metadata.intentName
+    intentName = req.body.result.metadata.intentName;
     for (var i = 0; i < listConfig.length; i++) {
         if (listConfig[i].intent.includes(intentName)) {
             anaConfig = listConfig[i];

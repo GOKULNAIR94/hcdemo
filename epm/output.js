@@ -1,9 +1,9 @@
 module.exports = function( response, anaConfig, req, res, callback) {
 
     var toTitleCase = require("titlecase");
-
+    var SendResponse = require("../sendResponse");
+    
     try {
-        var qString = "";
         var speech = "";
         var speechText = "";
         var suggests = [];
@@ -42,7 +42,7 @@ module.exports = function( response, anaConfig, req, res, callback) {
 
             case (intentName == "EPM_Jobs - custom" || intentName == "EPM_JobStatus"):
                 {
-                    speechText = "Status of job (Id: " + jobId + ") is " + response.descriptiveStatus + ", \n" + "JobName: " + response.jobName;
+                    speechText = "Status of job (Id: " + response.jobId + ") is " + response.descriptiveStatus + ", \n" + "JobName: " + response.jobName;
                     if (response.descriptiveStatus == "Error") {
                         speechText += ", \nDetails : " + response.details;
                     }

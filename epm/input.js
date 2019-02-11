@@ -1,8 +1,7 @@
 module.exports = function( dummy, anaConfig, req, res, callback) {
     
-	var speech = "";
-	var text = "";
     var input = {};
+    var intentName = req.body.result.metadata.intentName;
     
     switch (true) {
         case (intentName == "EPM_MDXQuery"):
