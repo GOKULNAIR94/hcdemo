@@ -20,7 +20,7 @@ var qString = "";
 var speech = "";
 
 restService.post('/inputmsg', function(req, res) {
-
+req.body.headers = req.headers;
     var anaConfig = {};
     var listConfig = fs.readFileSync("./anaconfig.json", 'utf8');
     //console.log("COntent : " + listConfig)
