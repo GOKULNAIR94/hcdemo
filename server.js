@@ -28,7 +28,7 @@ restService.post('/inputmsg', function(req, res) {
 
     intentName = req.body.result.metadata.intentName
     for (var i = 0; i < listConfig.length; i++) {
-        if (listConfig[i].intent.includes(intentName)) {
+        if (listConfig[i].intent.includes(intentName) || intentName.indexOf(listConfig[i].intent[0]) ) {
             anaConfig = listConfig[i];
             break;
         }
