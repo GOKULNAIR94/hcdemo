@@ -13,22 +13,15 @@ restService.use(bodyParser.json());
 
 var Input, Output, Webservice;
 var Invoke = require("./invoker");
-var SendResponse = require("./sendResponse");
 
 var intentName = "";
 
 var qString = "";
-
 var speech = "";
-var speechText = "";
-var suggests = [];
-var contextOut = [];
-
-
 
 restService.post('/inputmsg', function(req, res) {
 
-    var anaConfig;
+    var anaConfig = {};
     var listConfig = fs.readFileSync("./anaconfig.json", 'utf8');
     //console.log("COntent : " + listConfig)
     listConfig = JSON.parse(listConfig);
@@ -40,9 +33,17 @@ restService.post('/inputmsg', function(req, res) {
             break;
         }
     }
-    Invoke(0, 1, anaConfig, req, res, function() {
-        console.log("Done");
-    });
+    if(anaConfig.folder != null or anaConfig.folder != "" ){
+        Invoke(0, 1, anaConfig, req, res, function() {
+            console.log("Done");
+        });
+    }else{
+        speech = "Unable to process your request at the moment. Please try again later. Is there any thing else I can help you with?";
+        res.json({
+            speech : speech,
+            displayText : speech
+        });
+    }
 });
 
 restService.use(function(req, res, next) {
