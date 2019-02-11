@@ -2,7 +2,7 @@ module.exports = function(input, anaConfig, reqp, resp, callback) {
     var http = require("https");
     var intentName = reqp.body.result.metadata.intentName;
     console.log("qString : " + input.qString);
-    console.log("body : " + JSON.stringify(body));
+    console.log("body : " + JSON.stringify(input.body));
 
 
     var options = {
