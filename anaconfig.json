@@ -17,4 +17,8 @@
     "invoke": ["output"],
     "intent": ["Default Welcome Intent", "Default Welcome Intent_application"],
     "folder": "appSelect"
+}, {
+    "invoke": ["dismiss"],
+    "intent": ["smalltalk.confirmation.cancel"],
+    "folder": "generic"
 }]
