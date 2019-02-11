@@ -26,6 +26,7 @@
     "google-news": "^1.4.6",
     "json-query": "^2.2.2",
     "mssql": "^4.1.0",
+    "nodemailer": "^5.1.1",
     "open": "0.0.5",
     "opn": "^5.1.0",
     "request": "^2.76.0",

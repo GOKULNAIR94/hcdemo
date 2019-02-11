@@ -1,10 +1,10 @@
 module.exports = function(response, anaConfig, req, res, level, callback) {
 
-    const express = require('express');
-    const bunyan = require('bunyan');
-    const nodemailer = require('nodemailer');
-    const restService = express();
-    const bodyParser = require('body-parser');
+    var express = require('express');
+    //var bunyan = require('bunyan');
+    var nodemailer = require('nodemailer');
+    var restService = express();
+    var bodyParser = require('body-parser');
     var fs = require('fs');
 
     var intentName = req.body.result.metadata.intentName;
@@ -23,7 +23,7 @@ module.exports = function(response, anaConfig, req, res, level, callback) {
 
         console.log("Inside");
         // Create a SMTP transporter object
-        let transporter = nodemailer.createTransport({
+        var transporter = nodemailer.createTransport({
             service: 'Gmail', // no need to set host or port etc.
             auth: {
                 user: req.body.headers.emailuser,
@@ -82,7 +82,7 @@ module.exports = function(response, anaConfig, req, res, level, callback) {
         console.log('SMTP Configured');
         fs.readFile("./" + file, function(err, data) {
             // Message object
-            let message = {
+            var message = {
                 from: 'VIKI <' + req.body.headers.emailuser + '>',
                 // Comma separated list of recipients
                 to: to_email,
