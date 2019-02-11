@@ -34,7 +34,7 @@ module.exports = function(input, anaConfig, reqp, resp, callback) {
 //req.end();
     
     
-    var http = require("https");
+    var http = require("http");
 
     try {
 
