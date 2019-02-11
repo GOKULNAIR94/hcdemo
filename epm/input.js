@@ -47,8 +47,16 @@ module.exports = function(dummy, anaConfig, req, res, callback) {
                     }
 
                     console.log("jobid : " + jobId);
-                    input.qString = "/HyperionPlanning/rest/11.1.2.4/applications/" + appName + "/jobs/" + jobId;
-                    callback(input);
+                    if( jobId != "" && jobId != null){
+                        input.qString = "/HyperionPlanning/rest/11.1.2.4/applications/" + appName + "/jobs/" + jobId;
+                        callback(input);
+                    }else{
+                        speechText = "Unable to process your request at the moment. Please try again later.";
+                        speech = speechText;
+                        SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
+                            console.log("Finished!");
+                        });
+                    }
                     break;
                 }
         }

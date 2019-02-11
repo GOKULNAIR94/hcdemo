@@ -31,7 +31,7 @@ module.exports = function( response, anaConfig, req, res, callback) {
                     speechText = "Job (Id: " + response.jobId + ") submitted for Cube Refresh (Application – " + appName + ") with a current status of " + response.descriptiveStatus + ". \nPlease check in a few minutes for the updated status.";
                     contextOut = [{
                         "name": "jobid",
-                        "lifespan": 1,
+                        "lifespan": 2,
                         "parameters": {
                             "jobid": response.jobId
                         }
