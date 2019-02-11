@@ -28,7 +28,7 @@
     "intent": ["Default Welcome Intent", "Default Welcome Intent_application"],
     "folder": "appSelect"
 }, {
-    "invoke": ["sendemail"],
+    "invoke": ["sendEmail"],
     "intent": ["ADS_HyperionReport","reporting"],
     "folder": "report"
 }, {
