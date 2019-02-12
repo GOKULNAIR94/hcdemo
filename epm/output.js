@@ -17,7 +17,12 @@ module.exports = function( response, anaConfig, req, res, callback) {
         switch (true) {
             case (intentName == "EPM_MDXQuery"):
                 {
-                    speechText = "The " + toTitleCase(req.body.result.contexts[0].parameters["epm_account.original"]) + " – " + req.body.result.parameters.epm_account + " (Version: " + req.body.result.parameters.epm_version + ", Scenario: " + req.body.result.parameters.epm_scenario + ") for " + toTitleCase(req.body.result.contexts[0].parameters["Period.original"]) + " " + req.body.result.contexts[0].parameters["epm_year.original"] + " is $" + parseFloat(parseFloat(response.rows[0].data[0]).toFixed(2)).toLocaleString() + ". \nIs there anything else I can help you with?"
+                    if(response.row != null && response.row[0].data != null ){
+                        speechText = "The " + toTitleCase(req.body.result.contexts[0].parameters["epm_account.original"]) + " – " + req.body.result.parameters.epm_account + " (Version: " + req.body.result.parameters.epm_version + ", Scenario: " + req.body.result.parameters.epm_scenario + ") for " + toTitleCase(req.body.result.contexts[0].parameters["Period.original"]) + " " + req.body.result.contexts[0].parameters["epm_year.original"] + " is $" + parseFloat(parseFloat(response.rows[0].data[0]).toFixed(2)).toLocaleString() + ". \nIs there anything else I can help you with?"
+                    }else{
+                        speechText = "The " + toTitleCase(req.body.result.contexts[0].parameters["epm_account.original"]) + " for the provided configuration is not available."
+                    }
+                    
 
                     speech = speechText;
                     SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
