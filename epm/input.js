@@ -10,9 +10,40 @@ module.exports = function(dummy, anaConfig, req, res, callback) {
         switch (true) {
             case (intentName == "EPM_MDXQuery"):
                 {
-                    input.qString = "/HyperionPlanning/rest/11.1.2.4/applications/" + appName + "/dataexport/plantypes/Plan1";
+                    input.qString = "/HyperionPlanning/rest/11.1.2.4/applications/" + appName + "/plantypes/plan1/exportdataslice";
 
-                    input.body = "mdxQuery=SELECT {[Period].[" + req.body.result.parameters.Period + "]} ON COLUMNS, {[Account].[" + req.body.result.parameters.epm_account + "]} ON ROWS FROM Vision.Plan1 WHERE ([Year].[" + req.body.result.parameters.epm_year + "],[Scenario].[" + req.body.result.parameters.epm_scenario + "],[Version].[" + req.body.result.parameters.epm_version + "],[Entity].[" + "403" + "],[Product].[" + "No Product" + "])";
+                    //input.body = "mdxQuery=SELECT {[Period].[" + req.body.result.parameters.Period + "]} ON COLUMNS, {[Account].[" + req.body.result.parameters.epm_account + "]} ON ROWS FROM Vision.Plan1 WHERE ([Year].[" + req.body.result.parameters.epm_year + "],[Scenario].[" + req.body.result.parameters.epm_scenario + "],[Version].[" + req.body.result.parameters.epm_version + "],[Entity].[" + "403" + "],[Product].[" + "No Product" + "])";
+
+                    input.body = {
+                        "exportPlanningData": false,
+                        "gridDefinition": {
+                            "suppressMissingBlocks": true,
+                            "pov": {
+                                "dimensions": ["HSP_View", "Year", "Scenario", "Version", "Entity", "Product"],
+                                "members": [
+                                    ["BaseData"],
+                                    [req.body.result.parameters.epm_year],
+                                    [req.body.result.parameters.epm_scenario],
+                                    [req.body.result.parameters.epm_version],
+                                    ["No Entity"],
+                                    ["No Product"]
+                                ]
+                            },
+                            "columns": [{
+                                "dimensions": ["Period"],
+                                "members": [
+                                    [req.body.result.parameters.Period]
+                                ]
+                            }],
+                            "rows": [{
+                                "dimensions": ["Account"],
+                                "members": [
+                                    [req.body.result.parameters.epm_account]
+                                ]
+                            }]
+                        }
+                    };
+
                     callback(input);
                     break;
                 }
@@ -47,10 +78,10 @@ module.exports = function(dummy, anaConfig, req, res, callback) {
                     }
 
                     console.log("jobid : " + jobId);
-                    if( jobId != "" && jobId != null){
+                    if (jobId != "" && jobId != null) {
                         input.qString = "/HyperionPlanning/rest/11.1.2.4/applications/" + appName + "/jobs/" + jobId;
                         callback(input);
-                    }else{
+                    } else {
                         speechText = "Unable to process your request at the moment. Please try again later.";
                         speech = speechText;
                         SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
