@@ -9,9 +9,9 @@ module.exports = function(dummy, anaConfig, req, res, callback) {
         
         var epm_product = "";
         if (req.body.result.parameters.epm_product == "" || req.body.result.parameters.epm_product == null)
-            epm_product = req.body.result.parameters.epm_product;
-        else
             epm_product = "No Product"
+        else
+            epm_product = req.body.result.parameters.epm_product;
         
 
         switch (true) {
