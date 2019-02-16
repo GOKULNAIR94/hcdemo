@@ -18,7 +18,7 @@ module.exports = function( response, anaConfig, req, res, callback) {
             case (intentName == "EPM_MDXQuery"):
                 {
                     console.log();
-                    if(response.rows != null && response.rows[0].data != null ){
+                    if(response.rows != null && response.rows != "" && response.rows[0].data != null && response.rows[0].data != "" ){
                         speechText = "The " + toTitleCase(req.body.result.contexts[0].parameters["epm_account.original"]) + " – " + req.body.result.parameters.epm_account + " (Version: " + req.body.result.parameters.epm_version + ", Scenario: " + req.body.result.parameters.epm_scenario + ") for " + toTitleCase(req.body.result.contexts[0].parameters["Period.original"]) + " " + req.body.result.contexts[0].parameters["epm_year.original"] + " is $" + parseFloat(parseFloat(response.rows[0].data[0]).toFixed(2)).toLocaleString() + ". \nIs there anything else I can help you with?"
                     }else{
                         speechText = "The " + toTitleCase(req.body.result.contexts[0].parameters["epm_account.original"]) + " for the provided configuration is not available."
