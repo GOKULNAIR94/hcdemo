@@ -7,7 +7,7 @@ module.exports = function(dummy, anaConfig, req, res, callback) {
         if (appName == "" || appName == null)
             appName = "vision";
         
-        var epm_product = "",epm_year = "";
+        var epm_product = "", epm_year = "";
         if (req.body.result.parameters.epm_product == "" || req.body.result.parameters.epm_product == null)
             epm_product = "No Product"
         else
@@ -16,7 +16,7 @@ module.exports = function(dummy, anaConfig, req, res, callback) {
         if (req.body.result.parameters.epm_year == "" || req.body.result.parameters.epm_year == null)
             epm_year = "YearTotal"
         else
-            epm_year = req.body.result.parameters.epm_product;
+            epm_year = req.body.result.parameters.epm_year;
         
 
         switch (true) {
