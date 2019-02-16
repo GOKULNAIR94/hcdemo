@@ -34,7 +34,7 @@ module.exports = function(dummy, anaConfig, req, res, callback) {
                                 "dimensions": ["HSP_View", "Year", "Scenario", "Version", "Entity", "Product"],
                                 "members": [
                                     ["BaseData"],
-                                    [Period],
+                                    [req.body.result.parameters.epm_year],
                                     [req.body.result.parameters.epm_scenario],
                                     [req.body.result.parameters.epm_version],
                                     ["Total Entity"],
@@ -44,7 +44,7 @@ module.exports = function(dummy, anaConfig, req, res, callback) {
                             "columns": [{
                                 "dimensions": ["Period"],
                                 "members": [
-                                    [req.body.result.parameters.Period]
+                                    [Period]
                                 ]
                             }],
                             "rows": [{
