@@ -6,6 +6,13 @@ module.exports = function(dummy, anaConfig, req, res, callback) {
         var appName = req.body.result.parameters.epm_application;
         if (appName == "" || appName == null)
             appName = "vision";
+        
+        var epm_product = "";
+        if (req.body.result.parameters.epm_product == "" || req.body.result.parameters.epm_product == null)
+            epm_product = req.body.result.parameters.epm_product;
+        else
+            epm_product = "No Product"
+        
 
         switch (true) {
             case (intentName == "EPM_MDXQuery"):
@@ -25,8 +32,8 @@ module.exports = function(dummy, anaConfig, req, res, callback) {
                                     [req.body.result.parameters.epm_year],
                                     [req.body.result.parameters.epm_scenario],
                                     [req.body.result.parameters.epm_version],
-                                    ["403"],
-                                    ["No Product"]
+                                    ["Total Entity"],
+                                    [epm_product]
                                 ]
                             },
                             "columns": [{
