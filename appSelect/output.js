@@ -12,15 +12,16 @@ module.exports = function(response, anaConfig, req, res, level, callback) {
         switch (true) {
             case (intentName == "Default Welcome Intent"):
                 {
-                    speechText = "Hi! I am Aura, I am here to assist you in working with your Oracle Applications. Which application would you like to access?";
-                    speech = speechText;
-                    suggests = [{
-                            "title": "JD Edwards"
-                        }, {
-                            "title": "EBS"
-                        }, {
-                            "title": "Engagment Cloud"
-                        }];
+//                    speechText = "Hi! I am Donna, I am here to assist you in working with your Oracle Applications. Which application would you like to access?";
+//                    speech = speechText;
+//                    suggests = [{
+//                            "title": "JD Edwards"
+//                        }, {
+//                            "title": "EBS"
+//                        }, {
+//                            "title": "Engagment Cloud"
+//                        }];
+                    speechText = "Hi! I am Donna, How can I help you?";
                     SendResponse(speech, speechText, suggests, contextOut, req, res, function() {
                         console.log("Finished!");
                     });
