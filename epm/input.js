@@ -7,11 +7,16 @@ module.exports = function(dummy, anaConfig, req, res, callback) {
         if (appName == "" || appName == null)
             appName = "vision";
         
-        var epm_product = "";
+        var epm_product = "",epm_year = "";
         if (req.body.result.parameters.epm_product == "" || req.body.result.parameters.epm_product == null)
             epm_product = "No Product"
         else
             epm_product = req.body.result.parameters.epm_product;
+        
+        if (req.body.result.parameters.epm_year == "" || req.body.result.parameters.epm_year == null)
+            epm_year = "YearTotal"
+        else
+            epm_year = req.body.result.parameters.epm_product;
         
 
         switch (true) {
@@ -29,7 +34,7 @@ module.exports = function(dummy, anaConfig, req, res, callback) {
                                 "dimensions": ["HSP_View", "Year", "Scenario", "Version", "Entity", "Product"],
                                 "members": [
                                     ["BaseData"],
-                                    [req.body.result.parameters.epm_year],
+                                    [epm_year],
                                     [req.body.result.parameters.epm_scenario],
                                     [req.body.result.parameters.epm_version],
                                     ["Total Entity"],
