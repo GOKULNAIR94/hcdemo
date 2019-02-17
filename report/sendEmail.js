@@ -19,13 +19,13 @@ module.exports = function(response, anaConfig, req, res, level, callback) {
     try {
         console.log("Inside");
         // Create a SMTP transporter object
-        var transporter = nodemailer.createTransport({
-            service: 'Gmail', // no need to set host or port etc.
-            auth: {
-                user: req.body.headers.emailuser,
-                pass: req.body.headers.emailpw
-            }
-        });
+//        var transporter = nodemailer.createTransport({
+//            service: 'Gmail', // no need to set host or port etc.
+//            auth: {
+//                user: req.body.headers.emailuser,
+//                pass: req.body.headers.emailpw
+//            }
+//        });
         var to_email = "";
         var reportName = "";
         var yearName = "";
@@ -75,6 +75,12 @@ module.exports = function(response, anaConfig, req, res, level, callback) {
         console.log('SMTP Configured');
         fs.readFile("./attachment.txt", function (err, data) {
 
+            nodemailer.SMTP = {
+            host: 'gmail.com', 
+            use_authentication: true, 
+                user: req.body.headers.emailuser,
+                pass: req.body.headers.emailpw
+        };
         nodemailer.send_mail({       
                 sender: 'VIKI <' + req.body.headers.emailuser + '>',
                 to: 'gokulgnair94@gmail.com',
