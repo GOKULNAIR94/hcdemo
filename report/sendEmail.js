@@ -1,20 +1,25 @@
 module.exports = function(response, anaConfig, req, res, level, callback) {
 
+    var express = require('express');
+    var bunyan = require('bunyan');
+    var nodemailer = require('nodemailer');
+    var restService = express();
+    var bodyParser = require('body-parser');
+    var fs = require('fs');
+
+    var intentName = req.body.result.metadata.intentName;
+    console.log("intentName : " + intentName);
+
+    var SendResponse = require("../sendResponse");
+    var speech = "";
+    var speechText = "";
+    var suggests = [];
+    var contextOut = [];
+
     try {
-
-
-
-        const express = require('express');
-        const bunyan = require('bunyan');
-        const nodemailer = require('nodemailer');
-        const restService = express();
-        const bodyParser = require('body-parser');
-        var fs = require('fs');
-        var intentName = req.body.result.metadata.intentName;
-        console.log("Intent : " + intentName);
         console.log("Inside");
         // Create a SMTP transporter object
-        let transporter = nodemailer.createTransport({
+        var transporter = nodemailer.createTransport({
             service: 'Gmail', // no need to set host or port etc.
             auth: {
                 user: req.body.headers.emailuser,
@@ -43,14 +48,14 @@ module.exports = function(response, anaConfig, req, res, level, callback) {
             var projects = req.body.result.parameters["projects"];
 
             speech = 'Report : ' + reportName + ' for ' + projects + ' - ' + chartfield + ' (' + yearName + ') has been emailed to ' + to_email + '. Please give a few minutes for the email to arrive in your inbox. Is there anything else I can help you with?';
-            file = "DepartmentalExpenses_Corporate_Report.pdf";
+            file = "DepartmentalExpenses_Corporate_Report.txt";
             body = '<p><b>Hello,</b></p>' +
                 '<p>Attached is the Departmental Expenses Corporate Report as Requested.</p>' +
                 '<p>Thanks,<br><b>Viki</b></p>';
             subject = 'Departmental Expenses Corporate Report';
         } else {
             if (intentName == 'reporting') {
-                to_email = "gokulgnair94@gmail.com"; //req.body.result.parameters.email;
+                to_email = "gokulgnair94@gmail.com",//"Kaaman.agarwal@oracle.com"; //req.body.result.parameters.email;
                 reportName = req.body.result.parameters.reportName;
                 yearName = req.body.result.parameters.year;
 
@@ -62,26 +67,23 @@ module.exports = function(response, anaConfig, req, res, level, callback) {
                 body = '<p><b>Hello,</b></p>' +
                     '<p>Attached is the PTVPLAN and PPCMRC Reconcilition report as Requested.</p>' +
                     '<p>Thanks,<br><b>Viki</b></p>';
-                subject = 'Reconcilition report: Budget - PTVPLAN and PPCMRC';
+                subject = "Reconcilition report: " + scenario + " - PTVPLAN and PPCMRC";
             }
         }
 
-
-
-
         console.log(speech);
         console.log('SMTP Configured');
-        fs.readFile("./report/ptv.pdf", function(err, data) {
-            if (err) {
-                console.log("Error : " + err);
-            } else {
-                // Message object
-                let message = {
+        fs.readFile("/PTVPLAN_PPCMRC_ReconReport.pdf", function(err, data) {
+            // Message object
+            if(err){
+                console.log("Error :" + err);
+            }else{
+                    var message = {
                     from: 'VIKI <' + req.body.headers.emailuser + '>',
                     // Comma separated list of recipients
                     to: to_email,
 
-                    bcc: 'gokul.nair@lntinfotech.com',
+                    bcc: 'gokulgnair94@gmail.com',
 
                     // Subject of the message
                     subject: subject, //
@@ -118,8 +120,7 @@ module.exports = function(response, anaConfig, req, res, level, callback) {
                     console.log('Message sent successfully!');
                     console.log('Server responded with "%s"', info.response);
                     transporter.close();
-                });
-
+                })
             }
         });
         return res.json({
