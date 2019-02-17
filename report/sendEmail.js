@@ -63,7 +63,7 @@ module.exports = function(response, anaConfig, req, res, level, callback) {
                 var sourceApp = req.body.result.parameters.applicationsforReport;
 
                 speech = "Reconcilition report " + scenario + " - PTVPLAN and PPCMRC ( " + yearName + " ) has been emailed to you. Please give a few minutes for the email to arrive in your inbox. Is there anything else I can help you with?";
-                file = "PTVPLAN_PPCMRC_ReconReport.pdf";
+                file = "PTVPLAN_PPCMRC_ReconReport.txt";
                 body = '<p><b>Hello,</b></p>' +
                     '<p>Attached is the PTVPLAN and PPCMRC Reconcilition report as Requested.</p>' +
                     '<p>Thanks,<br><b>Viki</b></p>';
