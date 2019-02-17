@@ -16,11 +16,7 @@ module.exports = function(response, anaConfig, req, res, level, callback) {
     var suggests = [];
     var contextOut = [];
 
-
     try {
-
-
-
         console.log("Inside");
         // Create a SMTP transporter object
         var transporter = nodemailer.createTransport({
@@ -74,9 +70,6 @@ module.exports = function(response, anaConfig, req, res, level, callback) {
                 subject = "Reconcilition report: " + scenario + " - PTVPLAN and PPCMRC";
             }
         }
-
-
-
 
         console.log(speech);
         console.log('SMTP Configured');
