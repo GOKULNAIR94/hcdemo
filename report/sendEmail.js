@@ -52,7 +52,7 @@ module.exports = function(response, anaConfig, req, res, level, callback) {
             var projects = req.body.result.parameters["projects"];
 
             speech = 'Report : ' + reportName + ' for ' + projects + ' - ' + chartfield + ' (' + yearName + ') has been emailed to ' + to_email + '. Please give a few minutes for the email to arrive in your inbox. Is there anything else I can help you with?';
-            file = "DepartmentalExpenses_Corporate_Report.pdf";
+            file = "DepartmentalExpenses_Corporate_Report.txt";
             body = '<p><b>Hello,</b></p>' +
                 '<p>Attached is the Departmental Expenses Corporate Report as Requested.</p>' +
                 '<p>Thanks,<br><b>Viki</b></p>';
@@ -71,7 +71,7 @@ module.exports = function(response, anaConfig, req, res, level, callback) {
                 body = '<p><b>Hello,</b></p>' +
                     '<p>Attached is the PTVPLAN and PPCMRC Reconcilition report as Requested.</p>' +
                     '<p>Thanks,<br><b>Viki</b></p>';
-                subject = 'Reconcilition report: Budget - PTVPLAN and PPCMRC';
+                subject = "Reconcilition report: " + scenario + " - PTVPLAN and PPCMRC";
             }
         }
 
