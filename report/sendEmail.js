@@ -4,9 +4,9 @@ module.exports = function(response, anaConfig, req, res, level, callback) {
     var bunyan = require('bunyan');
     var nodemailer = require('nodemailer');
     var restService = express();
+    var fs = require('fs');
     var bodyParser = require('body-parser');
     var path = require('path');
-    var fs = require('fs');
 
     var intentName = req.body.result.metadata.intentName;
     console.log("intentName : " + intentName);
