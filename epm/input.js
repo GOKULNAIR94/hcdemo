@@ -13,6 +13,8 @@ module.exports = function(dummy, anaConfig, req, res, callback) {
         else
             epm_product = req.body.result.parameters.epm_product;
         
+        console.log("Product : " + epm_product);
+        
         if (req.body.result.parameters.Period == "" || req.body.result.parameters.Period == null)
             Period = "YearTotal"
         else
