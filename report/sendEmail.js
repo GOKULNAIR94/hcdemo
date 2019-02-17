@@ -55,7 +55,7 @@ module.exports = function(response, anaConfig, req, res, level, callback) {
             subject = 'Departmental Expenses Corporate Report';
         } else {
             if (intentName == 'reporting') {
-                to_email = "gokulgnair94@gmail.com",//"Kaaman.agarwal@oracle.com"; //req.body.result.parameters.email;
+                to_email = "Kaaman.agarwal@oracle.com"; //req.body.result.parameters.email;
                 reportName = req.body.result.parameters.reportName;
                 yearName = req.body.result.parameters.year;
 
