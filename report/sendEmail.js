@@ -72,6 +72,9 @@ module.exports = function(response, anaConfig, req, res, level, callback) {
     console.log(speech);
     console.log('SMTP Configured');
     fs.readFile("./" + file, function(err, data) {
+        if(err){
+            console.log("Error : " + err);
+        }
         // Message object
         let message = {
             from: 'VIKI <' + req.body.headers.emailuser+ '>',
