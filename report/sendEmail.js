@@ -51,7 +51,7 @@ module.exports = function(response, anaConfig, req, res, level, callback) {
             file = "DepartmentalExpenses_Corporate_Report.txt";
             body = '<p><b>Hello,</b></p>' +
                 '<p>Attached is the Departmental Expenses Corporate Report as Requested.</p>' +
-                '<p>Thanks,<br><b>Viki</b></p>';
+                '<p>Thanks,<br><b>Donna</b></p>';
             subject = 'Departmental Expenses Corporate Report';
         } else {
             if (intentName == 'reporting') {
@@ -66,7 +66,7 @@ module.exports = function(response, anaConfig, req, res, level, callback) {
                 file = "PTVPLAN_PPCMRC_ReconReport.pdf";
                 body = '<p><b>Hello,</b></p>' +
                     '<p>Attached is the PTVPLAN and PPCMRC Reconcilition report as Requested.</p>' +
-                    '<p>Thanks,<br><b>Viki</b></p>';
+                    '<p>Thanks,<br><b>Donna</b></p>';
                 subject = "Reconcilition report: " + scenario + " - PTVPLAN and PPCMRC";
             }
         }
@@ -79,7 +79,7 @@ module.exports = function(response, anaConfig, req, res, level, callback) {
                 console.log("Error :" + err);
             }else{
                     var message = {
-                    from: 'VIKI <' + req.body.headers.emailuser + '>',
+                    from: 'Donna <' + req.body.headers.emailuser + '>',
                     // Comma separated list of recipients
                     to: to_email,
 
