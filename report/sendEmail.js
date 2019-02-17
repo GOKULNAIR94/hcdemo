@@ -71,7 +71,7 @@ module.exports = function(response, anaConfig, req, res, level, callback) {
 
         console.log(speech);
         console.log('SMTP Configured');
-        fs.readFile("./ptv.pdf", function(err, data) {
+        fs.readFile("./report/ptv.pdf", function(err, data) {
             if (err) {
                 console.log("Error : " + err);
             } else {
