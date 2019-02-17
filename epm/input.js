@@ -9,7 +9,7 @@ module.exports = function(dummy, anaConfig, req, res, callback) {
         
         var epm_product = "", Period = "";
         if (req.body.result.parameters.epm_product == "" || req.body.result.parameters.epm_product == null)
-            epm_product = "No Product"
+            epm_product = "All Titles"
         else
             epm_product = req.body.result.parameters.epm_product;
         
