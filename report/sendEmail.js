@@ -5,6 +5,7 @@ module.exports = function(response, anaConfig, req, res, level, callback) {
     var nodemailer = require('nodemailer');
     var restService = express();
     var bodyParser = require('body-parser');
+    var path = require('path');
     var fs = require('fs');
 
     var intentName = req.body.result.metadata.intentName;
@@ -73,7 +74,7 @@ module.exports = function(response, anaConfig, req, res, level, callback) {
 
         console.log(speech);
         console.log('SMTP Configured');
-        fs.readFile('PTVPLAN_PPCMRC_ReconReport.pdf', function(err, data) {
+        fs.readFile('./PTVPLAN_PPCMRC_ReconReport.pdf', function(err, data) {
             // Message object
             if(err){
                 console.log("Error :" + err);
