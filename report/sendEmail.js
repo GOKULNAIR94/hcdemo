@@ -1,4 +1,6 @@
 module.exports = function(response, anaConfig, req, res, level, callback) {
+    
+    try{
 
     
     
