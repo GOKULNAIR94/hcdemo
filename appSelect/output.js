@@ -12,7 +12,7 @@ module.exports = function(response, anaConfig, req, res, level, callback) {
         switch (true) {
             case (intentName == "Default Welcome Intent"):
                 {
-                    speechText = "Hi! I am Donna, I am here to assist you in working with your Oracle Applications. Which application would you like to access?";
+                    speechText = "Hi! I am Aura, I am here to assist you in working with your Oracle Applications. Which application would you like to access?";
                     speech = speechText;
                     suggests = [{
                             "title": "JD Edwards"
